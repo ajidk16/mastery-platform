@@ -20,9 +20,12 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/(app)/dashboard': RouteRecordInfo<'/(app)/dashboard', '/dashboard', Record<never, never>, Record<never, never>>,
     '/(app)/learning-path': RouteRecordInfo<'/(app)/learning-path', '/learning-path', Record<never, never>, Record<never, never>>,
+    '/(app)/profile': RouteRecordInfo<'/(app)/profile', '/profile', Record<never, never>, Record<never, never>>,
     '/(app)/progress': RouteRecordInfo<'/(app)/progress', '/progress', Record<never, never>, Record<never, never>>,
+    '/(app)/settings': RouteRecordInfo<'/(app)/settings', '/settings', Record<never, never>, Record<never, never>>,
     '/(app)/shadowing': RouteRecordInfo<'/(app)/shadowing', '/shadowing', Record<never, never>, Record<never, never>>,
     '/(app)/speaking': RouteRecordInfo<'/(app)/speaking', '/speaking', Record<never, never>, Record<never, never>>,
+    '/(app)/subscription': RouteRecordInfo<'/(app)/subscription', '/subscription', Record<never, never>, Record<never, never>>,
     '/(app)/topics': RouteRecordInfo<'/(app)/topics', '/topics', Record<never, never>, Record<never, never>>,
     '/(app)/writing': RouteRecordInfo<'/(app)/writing', '/writing', Record<never, never>, Record<never, never>>,
     '/(auth)/onboarding': RouteRecordInfo<'/(auth)/onboarding', '/onboarding', Record<never, never>, Record<never, never>>,
@@ -51,8 +54,16 @@ declare module 'vue-router/auto-routes' {
       routes: '/(app)/learning-path'
       views: never
     }
+    'src/pages/(app)/profile.vue': {
+      routes: '/(app)/profile'
+      views: never
+    }
     'src/pages/(app)/progress.vue': {
       routes: '/(app)/progress'
+      views: never
+    }
+    'src/pages/(app)/settings.vue': {
+      routes: '/(app)/settings'
       views: never
     }
     'src/pages/(app)/shadowing.vue': {
@@ -61,6 +72,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/(app)/speaking.vue': {
       routes: '/(app)/speaking'
+      views: never
+    }
+    'src/pages/(app)/subscription.vue': {
+      routes: '/(app)/subscription'
       views: never
     }
     'src/pages/(app)/topics.vue': {

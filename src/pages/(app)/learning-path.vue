@@ -47,8 +47,8 @@ meta:
         <!-- Level Header -->
         <div class="d-flex align-center mb-6">
           <v-avatar
-            :color="getLevelColor(section.level)"
             class="mr-3"
+            :color="getLevelColor(section.level)"
             size="40"
             variant="tonal"
           >
@@ -107,7 +107,7 @@ meta:
                 v-if="lessonIndex < section.lessons.length - 1 || sectionIndex < pathSections.length - 1"
                 class="timeline-connector"
                 :class="{ 'completed-connector': lesson.status === 'completed' }"
-              ></div>
+              />
             </div>
 
             <!-- Lesson Card -->
@@ -123,8 +123,8 @@ meta:
             >
               <div class="d-flex align-center">
                 <v-avatar
-                  :color="lesson.status === 'locked' ? 'grey-lighten-2' : 'primary'"
                   class="mr-4"
+                  :color="lesson.status === 'locked' ? 'grey-lighten-2' : 'primary'"
                   rounded="lg"
                   size="48"
                   variant="tonal"
@@ -243,18 +243,25 @@ meta:
 
   function getLevelColor (level: string) {
     switch (level) {
-      case 'Beginner': return 'success'
-      case 'Intermediate': return 'warning'
-      case 'Advanced': return 'error'
-      default: return 'primary'
+      case 'Beginner': { return 'success'
+      }
+      case 'Intermediate': { return 'warning'
+      }
+      case 'Advanced': { return 'error'
+      }
+      default: { return 'primary'
+      }
     }
   }
 
   function getNodeClass (status: LessonStatus) {
     switch (status) {
-      case 'completed': return 'node-completed'
-      case 'current': return 'node-current'
-      default: return 'node-locked'
+      case 'completed': { return 'node-completed'
+      }
+      case 'current': { return 'node-current'
+      }
+      default: { return 'node-locked'
+      }
     }
   }
 

@@ -61,9 +61,9 @@ meta:
             clearable
             density="compact"
             hide-details
-            :items="goals"
             item-title="label"
             item-value="value"
+            :items="goals"
             label="Filter by Goal"
             prepend-inner-icon="mdi-target"
             rounded="lg"
@@ -99,8 +99,8 @@ meta:
             <v-card-text class="pa-4">
               <div class="d-flex align-center mb-2">
                 <v-chip
-                  :color="getLevelColor(topic.level)"
                   class="mr-2"
+                  :color="getLevelColor(topic.level)"
                   size="x-small"
                   variant="tonal"
                 >
@@ -188,9 +188,9 @@ meta:
 
   const filteredTopics = computed(() => {
     return topics.filter(topic => {
-      const matchesSearch = !searchQuery.value ||
-        topic.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        topic.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+      const matchesSearch = !searchQuery.value
+        || topic.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+        || topic.description.toLowerCase().includes(searchQuery.value.toLowerCase())
       const matchesLevel = selectedLevel.value === 'all' || topic.level === selectedLevel.value
       const matchesGoal = !selectedGoal.value || topic.goal === selectedGoal.value
       return matchesSearch && matchesLevel && matchesGoal
@@ -199,10 +199,14 @@ meta:
 
   function getLevelColor (level: string) {
     switch (level) {
-      case 'Beginner': return 'success'
-      case 'Intermediate': return 'warning'
-      case 'Advanced': return 'error'
-      default: return 'grey'
+      case 'Beginner': { return 'success'
+      }
+      case 'Intermediate': { return 'warning'
+      }
+      case 'Advanced': { return 'error'
+      }
+      default: { return 'grey'
+      }
     }
   }
 </script>

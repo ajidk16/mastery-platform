@@ -108,7 +108,7 @@ meta:
           +12% vs last week
         </v-chip>
       </div>
-      
+
       <div class="graph-container d-flex align-end justify-space-between px-4 pb-2">
         <div
           v-for="(day, index) in weeklyData"
@@ -122,7 +122,7 @@ meta:
                 class="graph-bar mb-3 rounded-t-lg"
                 :class="{ 'current-day': index === 6 }"
                 :style="{ height: `${(day.minutes / 60) * 200}px` }"
-              ></div>
+              />
             </template>
           </v-tooltip>
           <div class="text-caption font-weight-bold text-medium-emphasis">
@@ -222,8 +222,8 @@ meta:
 </template>
 
 <script lang="ts" setup>
-  import { useTheme } from 'vuetify'
   import { ref } from 'vue'
+  import { useTheme } from 'vuetify'
 
   const theme = useTheme()
 
