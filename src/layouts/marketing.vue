@@ -9,5 +9,5 @@
 </template>
 
 <script lang="ts" setup>
-  //
+  // No additional script logic needed for this layout
 </script>

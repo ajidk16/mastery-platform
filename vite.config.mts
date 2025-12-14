@@ -67,6 +67,16 @@ export default defineConfig({
       'unplugin-vue-router/data-loaders/basic',
     ],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['if-function'],
+      },
+      sass: {
+        silenceDeprecations: ['if-function'],
+      },
+    },
+  },
   define: { 'process.env': {} },
   resolve: {
     alias: {
