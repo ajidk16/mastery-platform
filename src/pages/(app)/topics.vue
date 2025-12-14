@@ -86,12 +86,12 @@ meta:
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
-            class="fill-height topic-card"
+            class="fill-height transition-all duration-300"
             :elevation="isHovering ? 8 : 1"
             rounded="xl"
           >
             <div
-              class="topic-header pa-4"
+              class="pa-4 rounded-t-[16px]"
               :style="{ background: `linear-gradient(135deg, ${topic.color}20, ${topic.color}40)` }"
             >
               <v-icon :color="topic.color" :icon="topic.icon" size="32" />
@@ -210,20 +210,3 @@ meta:
     }
   }
 </script>
-
-<style scoped>
-.topic-card {
-  transition: all 0.3s ease;
-}
-
-.topic-header {
-  border-radius: 16px 16px 0 0;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>

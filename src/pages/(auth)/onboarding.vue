@@ -14,7 +14,7 @@ meta:
             <span class="text-caption font-weight-medium text-primary">{{ Math.round((currentStep / totalSteps) * 100) }}%</span>
           </div>
           <v-progress-linear
-            class="progress-bar"
+            class="rounded-lg"
             color="primary"
             height="8"
             :model-value="(currentStep / totalSteps) * 100"
@@ -23,7 +23,7 @@ meta:
         </div>
 
         <!-- Step Content -->
-        <v-card class="onboarding-card pa-6 pa-md-8" elevation="4" rounded="xl">
+        <v-card class="bg-white pa-6 pa-md-8" elevation="4" rounded="xl">
           <!-- Step 1: Goal Selection -->
           <v-window v-model="currentStep">
             <v-window-item :value="1">
@@ -45,8 +45,8 @@ meta:
               <v-row>
                 <v-col v-for="goal in goals" :key="goal.value" cols="6">
                   <v-card
-                    class="goal-card pa-4 text-center h-100"
-                    :class="{ 'selected-card': selectedGoal === goal.value }"
+                    class="pa-4 text-center h-100 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
+                    :class="{ 'border-2 border-primary!': selectedGoal === goal.value }"
                     color="primary"
                     rounded="lg"
                     :variant="
@@ -83,12 +83,12 @@ meta:
                 </p>
               </div>
 
-              <v-radio-group v-model="selectedLevel" class="level-group">
+              <v-radio-group v-model="selectedLevel" class="m-0 [&_.v-selection-control-group]:gap-0">
                 <v-card
                   v-for="level in levels"
                   :key="level.value"
-                  class="level-card mb-3 pa-4"
-                  :class="{ 'selected-level': selectedLevel === level.value }"
+                  class="mb-3 pa-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
+                  :class="{ 'border-2 border-secondary!': selectedLevel === level.value }"
                   color="secondary"
                   rounded="lg"
                   :variant="
@@ -135,9 +135,9 @@ meta:
                   cols="4"
                 >
                   <v-card
-                    class="target-card pa-4 text-center"
+                    class="pa-4 text-center cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
                     :class="{
-                      'selected-target': selectedTarget === target.value,
+                      'border-2 border-accent!': selectedTarget === target.value,
                     }"
                     color="accent"
                     rounded="lg"
@@ -192,7 +192,7 @@ meta:
                 </p>
 
                 <v-card
-                  class="summary-card pa-4 mb-6"
+                  class="pa-4 mb-6 bg-[linear-gradient(135deg,#f9fafb,#f3f4f6)]"
                   color="grey-lighten-4"
                   flat
                   rounded="lg"
@@ -249,7 +249,7 @@ meta:
             <v-spacer v-else />
 
             <v-btn
-              class="text-none next-btn"
+              class="text-none transition-all duration-300 hover:enabled:-translate-y-[2px] hover:enabled:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
               color="primary"
               :disabled="!canProceed"
               rounded="lg"
@@ -384,7 +384,7 @@ meta:
 
   function prevStep () {
     if (currentStep.value > 1) {
-      currentStep.value--
+      currentStep.value++
     }
   }
 
@@ -402,76 +402,3 @@ meta:
     router.push('/dashboard')
   }
 </script>
-
-<style scoped>
-.progress-bar {
-  border-radius: 8px;
-}
-
-.onboarding-card {
-  background: white;
-}
-
-.goal-card,
-.level-card,
-.target-card {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.goal-card:hover,
-.level-card:hover,
-.target-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.selected-card,
-.selected-level,
-.selected-target {
-  border: 2px solid rgb(var(--v-theme-primary)) !important;
-}
-
-.selected-level {
-  border-color: rgb(var(--v-theme-secondary)) !important;
-}
-
-.selected-target {
-  border-color: rgb(var(--v-theme-accent)) !important;
-}
-
-.level-group {
-  margin: 0;
-}
-
-.level-group :deep(.v-selection-control-group) {
-  gap: 0;
-}
-
-.next-btn {
-  transition: all 0.3s ease;
-}
-
-.next-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3) !important;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-bounce {
-  animation: bounce 1s ease infinite;
-}
-
-.summary-card {
-  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
-}
-</style>

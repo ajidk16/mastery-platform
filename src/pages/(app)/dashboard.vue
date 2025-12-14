@@ -15,7 +15,7 @@ meta:
       </v-col>
       <v-col class="d-flex justify-end" cols="12" md="4">
         <!-- Streak Badge -->
-        <v-card class="streak-card pa-4 d-flex align-center" elevation="0" rounded="xl">
+        <v-card class="pa-4 d-flex align-center bg-[linear-gradient(135deg,#fef3c7,#fde68a)] border border-[#fcd34d]" elevation="0" rounded="xl">
           <div class="streak-ring mr-3">
             <v-progress-circular
               color="warning"
@@ -36,7 +36,7 @@ meta:
 
     <!-- Primary CTA: Start Speaking -->
     <v-card
-      class="daily-task-card mb-6 overflow-hidden"
+      class="mb-6 overflow-hidden relative bg-[linear-gradient(135deg,#6366f1,#4f46e5)]"
       color="primary"
       elevation="8"
       rounded="xl"
@@ -56,7 +56,7 @@ meta:
         </div>
         <div class="text-center">
           <v-btn
-            class="start-btn px-8"
+            class="px-8 transition-all duration-300 !text-[#4f46e5] font-semibold hover:-translate-y-[2px] hover:!shadow-[0_8px_25px_rgba(0,0,0,0.2)]"
             color="white"
             elevation="4"
             rounded="lg"
@@ -73,8 +73,8 @@ meta:
         </div>
       </div>
       <!-- Decorative elements -->
-      <div class="cta-decoration cta-decoration-1" />
-      <div class="cta-decoration cta-decoration-2" />
+      <div class="absolute rounded-full bg-white/10 w-[200px] h-[200px] -top-[50px] -right-[50px]" />
+      <div class="absolute rounded-full bg-white/10 w-[150px] h-[150px] -bottom-[30px] left-[10%]" />
     </v-card>
 
     <!-- Progress & Quick Actions -->
@@ -196,7 +196,7 @@ meta:
 
       <!-- Writing Practice -->
       <v-col cols="12" md="6">
-        <v-card class="fill-height writing-card" elevation="1" rounded="xl">
+        <v-card class="fill-height bg-[linear-gradient(135deg,#fefce8,#fef9c3)]" elevation="1" rounded="xl">
           <v-card-title class="d-flex align-center py-4 px-5">
             <v-icon class="mr-2" color="accent" icon="mdi-pencil" />
             Latihan Writing
@@ -256,50 +256,3 @@ meta:
     score: '8.5/10',
   }
 </script>
-
-<style scoped>
-.streak-card {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border: 1px solid #fcd34d;
-}
-
-.daily-task-card {
-  position: relative;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-}
-
-.cta-decoration {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.cta-decoration-1 {
-  width: 200px;
-  height: 200px;
-  top: -50px;
-  right: -50px;
-}
-
-.cta-decoration-2 {
-  width: 150px;
-  height: 150px;
-  bottom: -30px;
-  left: 10%;
-}
-
-.start-btn {
-  transition: all 0.3s ease;
-  color: #4f46e5 !important;
-  font-weight: 600;
-}
-
-.start-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
-}
-
-.writing-card {
-  background: linear-gradient(135deg, #fefce8, #fef9c3);
-}
-</style>

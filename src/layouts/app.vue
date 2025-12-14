@@ -3,22 +3,27 @@
     <!-- Navigation Drawer (Fixed, Full Height) -->
     <v-navigation-drawer
       v-model="drawer"
-      class="app-drawer"
+      class="border-r! border-[rgba(var(--v-border-color),0.08)]! transition-[width] duration-300 ease-in-out"
       color="surface"
       :rail="rail"
       :temporary="isMobile"
       width="260"
     >
       <!-- Logo -->
-      <div class="drawer-header pa-4 d-flex align-center">
+      <div class="h-16 px-4 flex items-center">
         <v-img
           alt="Mastery Platform"
-          class="logo-img"
+          class="transition-transform duration-300 hover:scale-105"
           height="36"
           src="@/assets/logo.svg"
           width="36"
         />
-        <transition name="fade">
+        <transition
+          enter-active-class="transition-opacity duration-200 ease-out"
+          enter-from-class="opacity-0"
+          leave-active-class="transition-opacity duration-200 ease-out"
+          leave-to-class="opacity-0"
+        >
           <div v-if="!rail" class="text-subtitle-1 font-weight-bold text-primary ml-3">
             Mastery
           </div>
@@ -32,7 +37,7 @@
         <v-list-item
           v-for="item in navItems"
           :key="item.to"
-          class="nav-item mb-1"
+          class="mb-1 transition-all duration-200 hover:bg-[rgba(99,102,241,0.08)]"
           color="primary"
           :prepend-icon="item.icon"
           rounded="lg"
@@ -49,7 +54,7 @@
       <template #append>
         <div v-if="!rail" class="pa-3">
           <v-card
-            class="pro-card pa-4"
+            class="pa-4 bg-linear-to-br from-[#eef2ff] to-[#e0e7ff] border border-[rgba(99,102,241,0.2)]"
             flat
             rounded="xl"
           >
@@ -78,7 +83,7 @@
 
         <div class="pa-2">
           <v-list-item
-            class="nav-item"
+            class="transition-all duration-200 hover:bg-[rgba(99,102,241,0.08)]"
             prepend-icon="mdi-cog-outline"
             rounded="lg"
             :title="rail ? '' : 'Settings'"
@@ -89,7 +94,7 @@
             </v-tooltip>
           </v-list-item>
           <v-list-item
-            class="nav-item"
+            class="transition-all duration-200 hover:bg-[rgba(99,102,241,0.08)]"
             prepend-icon="mdi-logout"
             rounded="lg"
             :title="rail ? '' : 'Logout'"
@@ -114,7 +119,12 @@
     </v-navigation-drawer>
 
     <!-- App Bar -->
-    <v-app-bar class="app-bar" color="background" elevation="0" height="64">
+    <v-app-bar
+      class="border-b border-[rgba(var(--v-border-color),0.08)] backdrop-blur-md"
+      color="background"
+      elevation="0"
+      height="64"
+    >
       <template #prepend>
         <v-app-bar-nav-icon
           v-if="isMobile"
@@ -149,7 +159,7 @@
         <v-menu offset="8" transition="slide-y-transition">
           <template #activator="{ props }">
             <v-avatar
-              class="user-avatar"
+              class="cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-[0_4px_12px_rgba(99,102,241,0.3)] mr-4 md:mr-6"
               color="primary"
               size="36"
               v-bind="props"
@@ -158,7 +168,7 @@
             </v-avatar>
           </template>
           <v-card min-width="220" rounded="xl">
-            <div class="pa-4 text-center border-bottom">
+            <div class="pa-4 text-center border-b border-[rgba(0,0,0,0.06)]">
               <v-avatar class="mb-2" color="primary" size="56">
                 <span class="text-h5 text-white">DK</span>
               </v-avatar>
@@ -199,10 +209,16 @@
     </v-app-bar>
 
     <!-- Main Content -->
-    <v-main class="app-main overflow-auto h-screen">
-      <div class="content-wrapper pa-4 pa-md-6">
+    <v-main class="bg-linear-to-b from-[#f9fafb] to-[#f3f4f6] h-screen overflow-auto">
+      <div class="max-w-350 mx-auto pa-4 md:pa-6 p-4! md:p-6!">
         <router-view v-slot="{ Component }">
-          <transition mode="out-in" name="page">
+          <transition
+            enter-active-class="transition-all duration-250 ease-out"
+            enter-from-class="opacity-0 translate-y-[10px]"
+            leave-active-class="transition-all duration-250 ease-out"
+            leave-to-class="opacity-0 -translate-y-[10px]"
+            mode="out-in"
+          >
             <component :is="Component" />
           </transition>
         </router-view>
@@ -252,101 +268,3 @@
     window.removeEventListener('resize', checkMobile)
   })
 </script>
-
-<style scoped>
-/* Drawer Styles */
-.app-drawer {
-  border-right: 1px solid rgba(var(--v-border-color), 0.08) !important;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.drawer-header {
-  height: 64px;
-}
-
-.logo-img {
-  transition: transform 0.3s ease;
-}
-
-.logo-img:hover {
-  transform: scale(1.05);
-}
-
-.nav-item {
-  transition: all 0.2s ease;
-}
-
-.nav-item:hover {
-  background: rgba(99, 102, 241, 0.08);
-}
-
-.pro-card {
-  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-}
-
-/* App Bar */
-.app-bar {
-  border-bottom: 1px solid rgba(var(--v-border-color), 0.08);
-  backdrop-filter: blur(12px);
-}
-
-.user-avatar {
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.user-avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.border-bottom {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-/* Main Content */
-.app-main {
-  background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
-  min-height: 100vh;
-}
-
-.content-wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* Page Transition */
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.25s ease;
-}
-
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* Fade Transition for Rail Mode */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* Mobile Optimization */
-@media (max-width: 959px) {
-  .content-wrapper {
-    padding: 16px !important;
-  }
-}
-</style>

@@ -21,7 +21,7 @@ meta:
 
     <!-- Toggle Monthly/Yearly -->
     <div
-      class="d-flex justify-center align-center mb-10 animate-fade-in-up delay-1"
+      class="d-flex justify-center align-center mb-10 animate-fade-in-up delay-100 opacity-0"
     >
       <span
         class="mr-3 font-weight-medium"
@@ -29,7 +29,7 @@ meta:
       >Bulanan</span>
       <v-switch
         v-model="isYearly"
-        class="pricing-toggle"
+        class="flex-none"
         color="primary"
         hide-details
         inset
@@ -52,8 +52,8 @@ meta:
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
-            class="pa-6 pa-md-8 h-100 d-flex flex-column pricing-card animate-fade-in-up delay-1"
-            :class="{ 'card-hover': isHovering }"
+            class="pa-6 pa-md-8 h-100 d-flex flex-column transition-all duration-300 relative animate-fade-in-up delay-100 opacity-0"
+            :class="{ '-translate-y-2 shadow-[0_12px_40px_rgba(0,0,0,0.12)]!': isHovering }"
             rounded="xl"
             variant="outlined"
           >
@@ -65,7 +65,7 @@ meta:
                 size="40"
               />
               <div class="text-h5 font-weight-bold mb-2">Free</div>
-              <div class="price-wrapper">
+              <div class="flex flex-col md:flex-row items-start md:items-baseline gap-0 md:gap-1">
                 <span class="text-h3 font-weight-bold">Rp 0</span>
                 <span class="text-body-2 text-medium-emphasis">/bulan</span>
               </div>
@@ -93,11 +93,11 @@ meta:
             >
               TERMASUK:
             </div>
-            <v-list class="flex-grow-1 feature-list" density="compact">
+            <v-list class="flex-grow-1" density="compact">
               <v-list-item
                 v-for="feature in freeFeatures"
                 :key="feature"
-                class="px-0"
+                class="px-0 min-h-[36px]"
               >
                 <template #prepend>
                   <v-icon
@@ -121,12 +121,12 @@ meta:
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
-            class="pa-6 pa-md-8 h-100 d-flex flex-column pricing-card pro-card animate-fade-in-up delay-2"
-            :class="{ 'card-hover-pro': isHovering }"
+            class="pa-6 pa-md-8 h-100 d-flex flex-column transition-all duration-300 relative bg-[linear-gradient(135deg,#eef2ff,#e0e7ff)] border-2 border-primary animate-fade-in-up delay-200 opacity-0"
+            :class="{ '-translate-y-3 shadow-[0_20px_60px_rgba(99,102,241,0.3)]!': isHovering }"
             elevation="12"
             rounded="xl"
           >
-            <v-chip class="popular-badge" color="primary" label size="small">
+            <v-chip class="absolute -top-3 right-5" color="primary" label size="small">
               <v-icon icon="mdi-star" size="small" start />
               POPULER
             </v-chip>
@@ -139,7 +139,7 @@ meta:
                 size="40"
               />
               <div class="text-h5 font-weight-bold text-primary mb-2">Pro</div>
-              <div class="price-wrapper">
+              <div class="flex flex-col md:flex-row items-start md:items-baseline gap-0 md:gap-1">
                 <span class="text-h3 font-weight-bold text-primary">
                   {{ isYearly ? "Rp 79rb" : "Rp 99rb" }}
                 </span>
@@ -155,7 +155,7 @@ meta:
 
             <v-btn
               block
-              class="mb-6 text-none upgrade-btn"
+              class="mb-6 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
               color="primary"
               elevation="4"
               rounded="lg"
@@ -174,13 +174,13 @@ meta:
             </div>
             <v-list
               bg-color="transparent"
-              class="flex-grow-1 feature-list"
+              class="flex-grow-1"
               density="compact"
             >
               <v-list-item
                 v-for="feature in proFeatures"
                 :key="feature.text"
-                class="px-0"
+                class="px-0 min-h-[36px]"
               >
                 <template #prepend>
                   <v-icon
@@ -210,7 +210,7 @@ meta:
     </v-row>
 
     <!-- Comparison Table -->
-    <v-sheet class="mt-16 pt-8 animate-fade-in-up delay-3">
+    <v-sheet class="mt-16 pt-8 animate-fade-in-up delay-300 opacity-0">
       <div class="text-center mb-8">
         <v-chip class="mb-4" color="secondary" label variant="tonal">
           <v-icon icon="mdi-compare" start />
@@ -222,20 +222,20 @@ meta:
       </div>
 
       <v-card
-        class="overflow-hidden comparison-table"
+        class="overflow-x-auto"
         elevation="2"
         rounded="xl"
       >
         <v-table>
           <thead>
-            <tr class="table-header">
+            <tr class="bg-gray-50">
               <th class="text-left py-4 px-6">
                 <span class="text-subtitle-1 font-weight-bold">Fitur</span>
               </th>
               <th class="text-center py-4 px-6">
                 <span class="text-subtitle-1 font-weight-bold">Free</span>
               </th>
-              <th class="text-center py-4 px-6 pro-column">
+              <th class="text-center py-4 px-6 bg-primary/5">
                 <span class="text-subtitle-1 font-weight-bold text-primary">Pro</span>
               </th>
             </tr>
@@ -244,7 +244,7 @@ meta:
             <tr
               v-for="row in comparisonData"
               :key="row.feature"
-              class="table-row"
+              class="transition-colors duration-200 hover:bg-gray-50"
             >
               <td class="py-4 px-6 font-weight-medium">{{ row.feature }}</td>
               <td class="text-center py-4 px-6">
@@ -258,7 +258,7 @@ meta:
                   <span class="text-body-2">{{ row.free }}</span>
                 </template>
               </td>
-              <td class="text-center py-4 px-6 pro-column">
+              <td class="text-center py-4 px-6 bg-primary/5">
                 <template v-if="row.pro === true">
                   <v-icon color="primary" icon="mdi-check-circle" />
                 </template>
@@ -276,7 +276,7 @@ meta:
 
     <!-- CTA Section -->
     <v-sheet
-      class="text-center mt-16 py-12 animate-fade-in-up delay-3"
+      class="text-center mt-16 py-12 animate-fade-in-up delay-300 opacity-0"
       color="grey-lighten-4"
       rounded="xl"
     >
@@ -333,117 +333,3 @@ meta:
     { feature: 'Priority Support', free: false, pro: true },
   ]
 </script>
-
-<style scoped>
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-.delay-2 {
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-
-.delay-3 {
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-
-/* Pricing Cards */
-.pricing-card {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.card-hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
-}
-
-.pro-card {
-  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-  border: 2px solid rgb(var(--v-theme-primary));
-}
-
-.card-hover-pro {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3) !important;
-}
-
-.popular-badge {
-  position: absolute;
-  top: -12px;
-  right: 20px;
-}
-
-.price-wrapper {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.upgrade-btn {
-  transition: all 0.3s ease;
-}
-
-.upgrade-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
-}
-
-.feature-list :deep(.v-list-item) {
-  min-height: 36px;
-}
-
-/* Toggle */
-.pricing-toggle {
-  flex: none;
-}
-
-/* Comparison Table */
-.comparison-table {
-  overflow-x: auto;
-}
-
-.table-header {
-  background: #f9fafb;
-}
-
-.table-row {
-  transition: background 0.2s ease;
-}
-
-.table-row:hover {
-  background: #f9fafb;
-}
-
-.pro-column {
-  background: rgba(99, 102, 241, 0.05);
-}
-
-/* Responsive */
-@media (max-width: 960px) {
-  .price-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-  }
-}
-</style>

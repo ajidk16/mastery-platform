@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="profile-page">
+  <div class="max-w-[1000px] mx-auto">
     <h1 class="text-h4 font-weight-bold mb-6">My Profile</h1>
 
     <v-row>
@@ -30,7 +30,7 @@ meta:
         <!-- Account Stats -->
         <v-card class="pa-5 mt-4" elevation="1" rounded="xl">
           <h3 class="text-subtitle-1 font-weight-bold mb-4">Account Stats</h3>
-          <div class="d-flex flex-column gap-3">
+          <div class="flex flex-col gap-[12px]">
             <div class="d-flex justify-space-between">
               <span class="text-body-2 text-medium-emphasis">Member Since</span>
               <span class="text-body-2 font-weight-medium">{{ memberSince }}</span>
@@ -110,8 +110,8 @@ meta:
                 cols="4"
               >
                 <v-card
-                  class="pa-4 text-center target-card"
-                  :class="{ 'selected-target': dailyTarget === target.value }"
+                  class="pa-4 text-center cursor-pointer transition-all duration-200 hover:-translate-y-[2px]"
+                  :class="{ 'border-2 border-primary': dailyTarget === target.value }"
                   :color="dailyTarget === target.value ? 'primary' : 'grey-lighten-4'"
                   elevation="0"
                   rounded="xl"
@@ -205,27 +205,3 @@ meta:
     }, 1500)
   }
 </script>
-
-<style scoped>
-.profile-page {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.gap-3 {
-  gap: 12px;
-}
-
-.target-card {
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.target-card:hover {
-  transform: translateY(-2px);
-}
-
-.selected-target {
-  border: 2px solid rgb(var(--v-theme-primary));
-}
-</style>

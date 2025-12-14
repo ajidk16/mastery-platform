@@ -6,25 +6,25 @@ meta:
 <template>
   <v-container class="pa-0" fluid>
     <!-- Hero Section -->
-    <v-sheet class="hero-section py-16 py-md-20" color="surface">
+    <v-sheet class="min-h-auto py-10 md:min-h-[80vh] md:py-20 flex items-center" color="surface">
       <v-container>
         <v-row align="center">
           <v-col class="text-center text-md-start" cols="12" md="6">
-            <div class="hero-content">
+            <div>
               <h1
                 class="text-h3 text-md-h2 font-weight-bold mb-4 text-primary animate-fade-in-up"
               >
                 Bicara Dengan Percaya Diri
               </h1>
               <p
-                class="text-body-1 text-md-h5 text-medium-emphasis mb-6 animate-fade-in-up delay-1"
+                class="text-body-1 text-md-h5 text-medium-emphasis mb-6 animate-fade-in-up delay-100 opacity-0"
               >
                 Platform latihan speaking AI yang fokus pada praktek, bukan
                 sekadar teori. Tingkatkan kelancaran bicara Anda dalam hitungan
                 minggu.
               </p>
               <v-btn
-                class="text-none px-8 animate-fade-in-up delay-2 hero-cta"
+                class="text-none px-8 animate-fade-in-up delay-200 opacity-0 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
                 color="primary"
                 elevation="8"
                 rounded="lg"
@@ -35,7 +35,7 @@ meta:
                 Mulai Latihan Gratis
               </v-btn>
               <div
-                class="mt-4 text-caption text-disabled animate-fade-in-up delay-3"
+                class="mt-4 text-caption text-disabled animate-fade-in-up delay-300 opacity-0"
               >
                 <v-icon icon="mdi-check-circle" size="small" /> Tidak perlu
                 kartu kredit
@@ -43,10 +43,10 @@ meta:
             </div>
           </v-col>
           <v-col cols="12" md="6">
-            <div class="hero-image-wrapper animate-fade-in-up delay-2">
+            <div class="animate-fade-in-up delay-200 opacity-0 relative">
               <v-img
                 alt="Speaking AI Demo"
-                class="mx-auto hero-image"
+                class="mx-auto transition-all duration-400 shadow-[0_20px_60px_rgba(99,102,241,0.3)] hover:scale-102"
                 cover
                 rounded="xl"
                 src="https://placehold.co/600x400/6366F1/ffffff?text=🎤+AI+Speaking"
@@ -84,13 +84,14 @@ meta:
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 v-bind="props"
-                class="py-8 px-6 h-100 step-card"
-                :class="{ 'card-hover': isHovering }"
+                class="py-8 px-6 h-100 transition-all duration-300 !rounded-[16px]"
+                :class="{ '-translate-y-2 shadow-[0_12px_40px_rgba(0,0,0,0.12)]!': isHovering }"
                 flat
               >
-                <div class="step-number mb-4">{{ index + 1 }}</div>
+                <div class="w-8 h-8 bg-[linear-gradient(135deg,#6366f1,#818cf8)] text-white rounded-full inline-flex items-center justify-center font-bold text-sm mb-4">{{ index + 1 }}</div>
                 <v-icon
-                  class="mb-4 step-icon"
+                  class="mb-4 transition-transform duration-300"
+                  :class="{ 'scale-110': isHovering }"
                   color="secondary"
                   :icon="step.icon"
                   size="56"
@@ -123,7 +124,7 @@ meta:
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 v-bind="props"
-                class="overflow-hidden demo-card"
+                class="overflow-hidden transition-all duration-400"
                 :elevation="isHovering ? 16 : 8"
                 rounded="xl"
               >
@@ -133,11 +134,11 @@ meta:
                   src="https://placehold.co/900x500/1a1a2e/ffffff?text=🤖+Interactive+AI+Chat"
                 >
                   <div
-                    class="d-flex fill-height align-center justify-center demo-overlay"
+                    class="d-flex fill-height align-center justify-center bg-[linear-gradient(135deg,rgba(99,102,241,0.3),rgba(16,185,129,0.3))] backdrop-blur-[2px] transition-all duration-300"
                   >
                     <v-btn
-                      class="play-btn"
-                      :class="{ 'play-btn-hover': isHovering }"
+                      class="transition-all duration-300"
+                      :class="{ 'scale-120': isHovering }"
                       color="white"
                       icon="mdi-play"
                       size="x-large"
@@ -153,7 +154,7 @@ meta:
     </v-sheet>
 
     <!-- Testimonials Section -->
-    <v-sheet class="py-16 testimonial-section" color="primary">
+    <v-sheet class="py-16 bg-[linear-gradient(135deg,#6366f1,#4f46e5)]" color="primary">
       <v-container>
         <div class="text-center mb-12">
           <v-chip class="mb-4" color="white" label variant="elevated">
@@ -174,12 +175,12 @@ meta:
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 v-bind="props"
-                class="pa-6 testimonial-card"
+                class="pa-6 transition-all duration-300"
                 :elevation="isHovering ? 12 : 4"
                 rounded="xl"
               >
                 <v-icon
-                  class="quote-icon"
+                  class="opacity-30 absolute top-4 right-4"
                   color="primary"
                   icon="mdi-format-quote-open"
                   size="32"
@@ -223,7 +224,7 @@ meta:
           Mulai gratis, upgrade saat Anda siap berkomitmen lebih.
         </p>
         <v-btn
-          class="px-8 text-none pricing-btn"
+          class="px-8 text-none transition-all duration-300 hover:-translate-y-[2px]"
           color="primary"
           rounded="lg"
           size="x-large"
@@ -248,11 +249,11 @@ meta:
         </div>
         <v-row justify="center">
           <v-col cols="12" md="8">
-            <v-expansion-panels class="faq-panels" variant="accordion">
+            <v-expansion-panels variant="accordion">
               <v-expansion-panel
                 v-for="faq in faqs"
                 :key="faq.question"
-                class="mb-3"
+                class="mb-3 bg-white transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
                 elevation="0"
                 rounded="lg"
               >
@@ -276,7 +277,7 @@ meta:
     </v-sheet>
 
     <!-- Final CTA -->
-    <v-sheet class="py-16 text-center final-cta" color="surface">
+    <v-sheet class="py-16 text-center bg-[linear-gradient(180deg,#f9fafb,#f3f4f6)]" color="surface">
       <v-container>
         <v-icon
           class="mb-4"
@@ -292,7 +293,7 @@ meta:
           speaking mereka
         </p>
         <v-btn
-          class="px-10 text-none final-cta-btn"
+          class="px-10 text-none transition-all duration-300 hover:-translate-y-[2px]"
           color="primary"
           elevation="8"
           rounded="lg"
@@ -367,171 +368,3 @@ meta:
     },
   ]
 </script>
-
-<style scoped>
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-.delay-2 {
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-
-.delay-3 {
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-
-/* Hero Section */
-.hero-section {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-cta {
-  transition: all 0.3s ease;
-}
-
-.hero-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
-}
-
-.hero-image-wrapper {
-  position: relative;
-}
-
-.hero-image {
-  transition: all 0.4s ease;
-  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
-}
-
-.hero-image:hover {
-  transform: scale(1.02);
-}
-
-/* Step Cards */
-.step-card {
-  transition: all 0.3s ease;
-  border-radius: 16px !important;
-}
-
-.card-hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
-}
-
-.step-number {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #6366f1, #818cf8);
-  color: white;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.step-icon {
-  transition: transform 0.3s ease;
-}
-
-.card-hover .step-icon {
-  transform: scale(1.1);
-}
-
-/* Demo Card */
-.demo-card {
-  transition: all 0.4s ease;
-}
-
-.demo-overlay {
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.3),
-    rgba(16, 185, 129, 0.3)
-  );
-  backdrop-filter: blur(2px);
-  transition: all 0.3s ease;
-}
-
-.play-btn {
-  transition: all 0.3s ease;
-}
-
-.play-btn-hover {
-  transform: scale(1.2);
-}
-
-/* Testimonial Section */
-.testimonial-section {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-}
-
-.testimonial-card {
-  transition: all 0.3s ease;
-}
-
-.quote-icon {
-  opacity: 0.3;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-/* FAQ */
-.faq-panels .v-expansion-panel {
-  background: white;
-  transition: all 0.3s ease;
-}
-
-.faq-panels .v-expansion-panel:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-/* CTA Buttons */
-.pricing-btn,
-.final-cta-btn {
-  transition: all 0.3s ease;
-}
-
-.pricing-btn:hover,
-.final-cta-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* Final CTA */
-.final-cta {
-  background: linear-gradient(180deg, #f9fafb, #f3f4f6);
-}
-
-/* Responsive adjustments */
-@media (max-width: 960px) {
-  .hero-section {
-    min-height: auto;
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
-  }
-}
-</style>

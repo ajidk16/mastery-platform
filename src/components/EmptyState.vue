@@ -1,5 +1,5 @@
 <template>
-  <div class="empty-state text-center pa-8">
+  <div class="min-h-[400px] flex flex-col items-center justify-center text-center pa-8">
     <v-icon
       class="mb-4"
       :color="iconColor"
@@ -24,7 +24,7 @@
     </slot>
 
     <!-- Educational tip -->
-    <div v-if="tip" class="tip-box mt-8 pa-4 rounded-lg mx-auto">
+    <div v-if="tip" class="mt-8 pa-4 rounded-lg mx-auto bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.2)] max-w-[500px]">
       <v-icon class="mr-2" color="primary" icon="mdi-lightbulb-on" size="small" />
       <span class="text-body-2">{{ tip }}</span>
     </div>
@@ -44,19 +44,3 @@
 
   defineEmits(['action'])
 </script>
-
-<style scoped>
-.empty-state {
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.tip-box {
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  max-width: 500px;
-}
-</style>

@@ -4,14 +4,14 @@ meta:
 </route>
 
 <template>
-  <div class="subscription-page">
+  <div class="max-w-[1100px] mx-auto">
     <h1 class="text-h4 font-weight-bold mb-6">Subscription & Billing</h1>
 
     <v-row>
       <!-- Current Plan -->
       <v-col cols="12" md="5">
         <v-card
-          class="current-plan-card pa-6"
+          class="pa-6 bg-[linear-gradient(135deg,#6366f1,#4f46e5)] text-white"
           elevation="4"
           rounded="xl"
         >
@@ -71,17 +71,16 @@ meta:
               sm="6"
             >
               <v-card
-                class="plan-option pa-5"
+                class="pa-5 cursor-pointer transition-all duration-200 relative overflow-visible hover:-translate-y-[2px]"
                 :class="{
-                  'selected-plan': currentPlan === plan.name,
-                  'recommended': plan.recommended
+                  'border-2 border-primary': currentPlan === plan.name,
                 }"
                 :elevation="currentPlan === plan.name ? 4 : 0"
                 rounded="xl"
                 :variant="currentPlan === plan.name ? 'elevated' : 'outlined'"
                 @click="currentPlan = plan.name"
               >
-                <div v-if="plan.recommended" class="recommended-badge">
+                <div v-if="plan.recommended" class="absolute -top-[10px] right-[12px] bg-[linear-gradient(135deg,#6366f1,#4f46e5)] text-white text-[10px] font-bold py-[2px] px-[8px] rounded-[4px]">
                   Popular
                 </div>
                 <div class="d-flex align-center mb-3">
@@ -178,42 +177,3 @@ meta:
     { id: 3, date: 'Oct 12, 2024', description: 'Pro Plan - Monthly', amount: 'Rp 79.000', status: 'Paid' },
   ]
 </script>
-
-<style scoped>
-.subscription-page {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.current-plan-card {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: white;
-}
-
-.plan-option {
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: visible;
-}
-
-.plan-option:hover {
-  transform: translateY(-2px);
-}
-
-.selected-plan {
-  border: 2px solid rgb(var(--v-theme-primary));
-}
-
-.recommended-badge {
-  position: absolute;
-  top: -10px;
-  right: 12px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-</style>

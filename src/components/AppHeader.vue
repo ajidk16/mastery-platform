@@ -1,18 +1,18 @@
 <template>
   <v-app-bar
-    class="header-bar px-2 px-md-4"
+    class="border-b border-black/5 backdrop-blur-[10px]"
     color="background"
     elevation="0"
     height="70"
   >
     <template #prepend>
       <router-link
-        class="text-decoration-none d-flex align-center logo-link"
+        class="text-decoration-none d-flex align-center group transition-opacity duration-200 hover:opacity-80"
         to="/"
       >
         <v-img
           alt="Logo"
-          class="me-2 logo-img"
+          class="me-2 transition-transform duration-300 group-hover:scale-105"
           height="36"
           src="@/assets/logo.svg"
           width="36"
@@ -28,15 +28,15 @@
       <router-link
         v-for="link in navLinks"
         :key="link.to"
-        class="nav-link mx-3"
-        :class="{ 'nav-link-active': isActive(link.to) }"
+        class="mx-3 relative text-medium-emphasis/70 no-underline text-[15px] font-medium py-2 px-1 transition-all duration-200 hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-200 after:rounded-[2px] hover:after:w-full"
+        :class="{ 'text-primary after:w-full': isActive(link.to) }"
         :to="link.to"
       >
         {{ link.label }}
       </router-link>
 
       <v-btn
-        class="ml-4 text-none cta-btn"
+        class="ml-4 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
         color="primary"
         elevation="2"
         rounded="lg"
@@ -59,7 +59,7 @@
   <!-- Mobile Navigation Drawer -->
   <v-navigation-drawer
     v-model="drawer"
-    class="mobile-drawer"
+    class="rounded-l-[16px]!"
     location="right"
     temporary
     width="280"
@@ -118,75 +118,3 @@
     return route.path === path
   }
 </script>
-
-<style scoped>
-.header-bar {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
-}
-
-.logo-link {
-  transition: opacity 0.2s ease;
-}
-
-.logo-link:hover {
-  opacity: 0.8;
-}
-
-.logo-img {
-  transition: transform 0.3s ease;
-}
-
-.logo-link:hover .logo-img {
-  transform: scale(1.05);
-}
-
-.nav-link {
-  position: relative;
-  color: rgba(var(--v-theme-on-background), 0.7);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 8px 4px;
-  transition: all 0.2s ease;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: rgb(var(--v-theme-primary));
-  transition: width 0.2s ease;
-  border-radius: 2px;
-}
-
-.nav-link:hover {
-  color: rgb(var(--v-theme-primary));
-}
-
-.nav-link:hover::after,
-.nav-link-active::after {
-  width: 100%;
-}
-
-.nav-link-active {
-  color: rgb(var(--v-theme-primary));
-}
-
-.cta-btn {
-  transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3) !important;
-}
-
-.mobile-drawer {
-  border-radius: 16px 0 0 16px !important;
-}
-</style>

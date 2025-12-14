@@ -8,7 +8,7 @@ meta:
     <v-row align="center" justify="center">
       <v-col cols="12" lg="4" md="5">
         <!-- Auth Card -->
-        <v-card class="auth-card pa-6 pa-md-8" elevation="8" rounded="xl">
+        <v-card class="bg-white pa-6 pa-md-8" elevation="8" rounded="xl">
           <!-- Logo -->
           <div class="text-center mb-6">
             <v-img
@@ -125,7 +125,7 @@ meta:
             <!-- Submit Button -->
             <v-btn
               block
-              class="mt-4 text-none submit-btn"
+              class="mt-4 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
               color="primary"
               :loading="loading"
               rounded="lg"
@@ -208,22 +208,3 @@ meta:
     }, 1500)
   }
 </script>
-
-<style scoped>
-.auth-card {
-  background: white;
-}
-
-.submit-btn {
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-</style>

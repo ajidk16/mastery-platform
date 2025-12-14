@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="learning-path-page">
+  <div class="max-w-[900px] mx-auto">
     <div class="d-flex align-center justify-space-between mb-8">
       <div>
         <h1 class="text-h4 font-weight-bold">Learning Path</h1>
@@ -38,11 +38,11 @@ meta:
     </v-card>
 
     <!-- Timeline -->
-    <div class="timeline-container">
+    <div>
       <div
         v-for="(section, sectionIndex) in pathSections"
         :key="section.level"
-        class="level-section mb-8"
+        class="mb-8"
       >
         <!-- Level Header -->
         <div class="d-flex align-center mb-6">
@@ -71,16 +71,16 @@ meta:
         </div>
 
         <!-- Lessons Timeline -->
-        <div class="lessons-timeline pl-5">
+        <div class="pl-5">
           <div
             v-for="(lesson, lessonIndex) in section.lessons"
             :key="lesson.id"
-            class="timeline-item d-flex mb-4"
+            class="d-flex mb-4"
           >
             <!-- Timeline Node -->
-            <div class="timeline-node-wrapper">
+            <div class="flex flex-col items-center relative">
               <div
-                class="timeline-node d-flex align-center justify-center"
+                class="w-8 h-8 rounded-full z-10 d-flex align-center justify-center"
                 :class="getNodeClass(lesson.status)"
               >
                 <v-icon
@@ -105,17 +105,18 @@ meta:
               <!-- Connector Line -->
               <div
                 v-if="lessonIndex < section.lessons.length - 1 || sectionIndex < pathSections.length - 1"
-                class="timeline-connector"
-                :class="{ 'completed-connector': lesson.status === 'completed' }"
+                class="w-[3px] h-full bg-gray-200 min-h-[40px] mt-1"
+                :class="{ 'bg-[linear-gradient(180deg,#22c55e,#22c55e)]': lesson.status === 'completed' }"
               />
             </div>
 
             <!-- Lesson Card -->
             <v-card
-              class="lesson-card flex-grow-1 ml-4 pa-4"
+              class="grow ml-4 pa-4 transition-all duration-300"
               :class="{
-                'current-lesson': lesson.status === 'current',
-                'locked-lesson': lesson.status === 'locked'
+                'border-2 border-primary bg-[linear-gradient(135deg,#eef2ff,#e0e7ff)]': lesson.status === 'current',
+                'opacity-60 bg-gray-50': lesson.status === 'locked',
+                'hover:translate-x-2': lesson.status !== 'locked'
               }"
               :disabled="lesson.status === 'locked'"
               :elevation="lesson.status === 'current' ? 4 : 1"
@@ -131,7 +132,7 @@ meta:
                 >
                   <v-icon :icon="lesson.icon" />
                 </v-avatar>
-                <div class="flex-grow-1">
+                <div class="grow">
                   <h3 class="text-subtitle-1 font-weight-bold mb-1">
                     {{ lesson.title }}
                   </h3>
@@ -181,7 +182,7 @@ meta:
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { ref } from 'vue'
 
   type LessonStatus = 'completed' | 'current' | 'locked'
 
@@ -256,11 +257,11 @@ meta:
 
   function getNodeClass (status: LessonStatus) {
     switch (status) {
-      case 'completed': { return 'node-completed'
+      case 'completed': { return 'bg-[linear-gradient(135deg,#22c55e,#16a34a)]'
       }
-      case 'current': { return 'node-current'
+      case 'current': { return 'bg-[linear-gradient(135deg,#6366f1,#4f46e5)] shadow-[0_0_0_4px_rgba(99,102,241,0.2)]'
       }
-      default: { return 'node-locked'
+      default: { return 'bg-gray-200 border-2 border-dashed border-gray-300'
       }
     }
   }
@@ -278,70 +279,3 @@ meta:
     return 'grey'
   }
 </script>
-
-<style scoped>
-.learning-path-page {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Timeline Styles */
-.timeline-node-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
-.timeline-node {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.node-completed {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-}
-
-.node-current {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-}
-
-.node-locked {
-  background: #e5e7eb;
-  border: 2px dashed #d1d5db;
-}
-
-.timeline-connector {
-  width: 3px;
-  height: 100%;
-  background: #e5e7eb;
-  min-height: 40px;
-  margin-top: 4px;
-}
-
-.completed-connector {
-  background: linear-gradient(180deg, #22c55e, #22c55e);
-}
-
-/* Lesson Cards */
-.lesson-card {
-  transition: all 0.3s ease;
-}
-
-.current-lesson {
-  border: 2px solid rgb(var(--v-theme-primary));
-  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-}
-
-.locked-lesson {
-  opacity: 0.6;
-  background: #f9fafb;
-}
-
-.lesson-card:not(.locked-lesson):hover {
-  transform: translateX(8px);
-}
-</style>

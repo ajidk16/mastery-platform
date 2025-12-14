@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="settings-page">
+  <div class="max-w-[1000px] mx-auto">
     <h1 class="text-h4 font-weight-bold mb-6">Settings</h1>
 
     <v-row>
@@ -206,10 +206,3 @@ meta:
     { title: 'Privacy Policy', icon: 'mdi-shield-lock-outline', to: '#' },
   ]
 </script>
-
-<style scoped>
-.settings-page {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-</style>

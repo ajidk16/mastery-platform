@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="progress-page">
+  <div class="max-w-[1200px] mx-auto">
     <h1 class="text-h4 font-weight-bold mb-6">My Progress</h1>
 
     <!-- Top Stats Row -->
@@ -64,7 +64,7 @@ meta:
         <v-card class="fill-height pa-6" elevation="1" rounded="xl">
           <h3 class="text-h6 font-weight-bold mb-6">Total Stats</h3>
           <div class="d-flex flex-column gap-4">
-            <div class="stat-item d-flex align-center">
+            <div class="d-flex align-center">
               <v-avatar class="mr-4" color="primary" rounded="lg" variant="tonal">
                 <v-icon icon="mdi-clock-outline" />
               </v-avatar>
@@ -73,7 +73,7 @@ meta:
                 <div class="text-caption text-medium-emphasis">Speaking Time</div>
               </div>
             </div>
-            <div class="stat-item d-flex align-center">
+            <div class="d-flex align-center">
               <v-avatar class="mr-4" color="secondary" rounded="lg" variant="tonal">
                 <v-icon icon="mdi-forum-outline" />
               </v-avatar>
@@ -82,7 +82,7 @@ meta:
                 <div class="text-caption text-medium-emphasis">Sessions Completed</div>
               </div>
             </div>
-            <div class="stat-item d-flex align-center">
+            <div class="d-flex align-center">
               <v-avatar class="mr-4" color="accent" rounded="lg" variant="tonal">
                 <v-icon icon="mdi-star-outline" />
               </v-avatar>
@@ -109,18 +109,18 @@ meta:
         </v-chip>
       </div>
 
-      <div class="graph-container d-flex align-end justify-space-between px-4 pb-2">
+      <div class="h-[250px] border-b-2 border-black/5 d-flex align-end justify-space-between px-4 pb-2">
         <div
           v-for="(day, index) in weeklyData"
           :key="index"
-          class="graph-column text-center"
+          class="flex-1 flex flex-col justify-end items-center"
         >
           <v-tooltip location="top" :text="`${day.minutes} min`">
             <template #activator="{ props }">
               <div
                 v-bind="props"
-                class="graph-bar mb-3 rounded-t-lg"
-                :class="{ 'current-day': index === 6 }"
+                class="w-[40%] bg-indigo-100 transition-all duration-300 min-h-[4px] mb-3 rounded-t-lg hover:bg-indigo-400 hover:scale-y-105"
+                :class="{ 'bg-indigo-500!': index === 6 }"
                 :style="{ height: `${(day.minutes / 60) * 200}px` }"
               />
             </template>
@@ -144,7 +144,7 @@ meta:
           style="background: linear-gradient(135deg, #FF9966, #FF5E62)"
         >
           <div class="mb-4">
-            <v-icon class="streak-flame" icon="mdi-fire" size="64" />
+            <v-icon class="animate-pulse-flame drop-shadow-[0_0_10px_rgba(255,230,200,0.5)]" icon="mdi-fire" size="64" />
           </div>
           <div class="text-h2 font-weight-black mb-1">{{ currentStreak }}</div>
           <div class="text-h6 font-weight-medium opacity-90 mb-6">Day Streak</div>
@@ -174,13 +174,17 @@ meta:
             sm="4"
           >
             <v-card
-              class="fill-height pa-4 text-center badge-card"
-              :class="{ 'locked': !badge.unlocked }"
+              class="fill-height pa-4 text-center"
+              :class="{ '!bg-gray-50 opacity-80': !badge.unlocked }"
               elevation="1"
               rounded="xl"
             >
-              <div class="badge-icon-wrapper mb-3 mx-auto">
+              <div
+                class="w-16 h-16 rounded-full mb-3 mx-auto flex items-center justify-center"
+                :class="badge.unlocked ? 'bg-white shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'bg-black/3'"
+              >
                 <v-icon
+                  :class="{ 'grayscale opacity-50': !badge.unlocked }"
                   :color="badge.unlocked ? badge.color : 'grey'"
                   :icon="badge.icon"
                   size="40"
@@ -299,79 +303,3 @@ meta:
     },
   ]
 </script>
-
-<style scoped>
-.progress-page {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.gap-4 { gap: 16px; }
-
-/* Graph Config */
-.graph-container {
-  height: 250px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
-}
-
-.graph-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.graph-bar {
-  width: 40%;
-  background-color: #e0e7ff;
-  transition: all 0.3s ease;
-  min-height: 4px;
-}
-
-.graph-bar:hover {
-  background-color: #818cf8;
-  transform: scaleY(1.05);
-}
-
-.current-day {
-  background-color: #6366f1;
-}
-
-/* Streak Flame Animation */
-.streak-flame {
-  animation: pulse-flame 2s infinite ease-in-out;
-  filter: drop-shadow(0 0 10px rgba(255, 230, 200, 0.5));
-}
-
-@keyframes pulse-flame {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 230, 200, 0.5)); }
-  50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.8)); }
-}
-
-/* Badge Locked State */
-.badge-card.locked {
-  background-color: #f9fafb;
-  opacity: 0.8;
-}
-
-.badge-card.locked .v-icon {
-  filter: grayscale(100%);
-  opacity: 0.5;
-}
-
-.badge-icon-wrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.03);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.badge-card:not(.locked) .badge-icon-wrapper {
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-</style>

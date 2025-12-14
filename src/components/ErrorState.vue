@@ -1,8 +1,8 @@
 <template>
-  <div class="error-state text-center pa-8">
+  <div class="min-h-[350px] flex flex-col items-center justify-center text-center pa-8">
     <div
-      class="error-icon-wrapper mb-4 mx-auto d-flex align-center justify-center"
-      :class="`bg-${variant}-lighten-5`"
+      class="mb-4 mx-auto d-flex align-center justify-center w-[100px] h-[100px] rounded-full"
+      :class="variantBgColor"
     >
       <v-icon
         :color="variant"
@@ -15,7 +15,7 @@
       {{ message }}
     </p>
 
-    <div class="d-flex justify-center gap-3">
+    <div class="d-flex justify-center gap-[12px]">
       <v-btn
         v-if="secondaryActionText"
         rounded="lg"
@@ -38,7 +38,9 @@
 </template>
 
 <script lang="ts" setup>
-  withDefaults(
+  import { computed } from 'vue'
+
+  const props = withDefaults(
     defineProps<{
       variant?: 'error' | 'warning' | 'info'
       icon?: string
@@ -55,36 +57,17 @@
   )
 
   defineEmits(['primary', 'secondary'])
+
+  const variantBgColor = computed(() => {
+    switch (props.variant) {
+      case 'warning': { return 'bg-[#fffbeb]'
+      }
+      case 'info': { return 'bg-[#eff6ff]'
+      }
+      case 'error': { return 'bg-[#fef2f2]'
+      }
+      default: { return 'bg-[#fef2f2]'
+      }
+    }
+  })
 </script>
-
-<style scoped>
-.error-state {
-  min-height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.error-icon-wrapper {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.gap-3 {
-  gap: 12px;
-}
-
-.bg-error-lighten-5 {
-  background-color: #fef2f2;
-}
-
-.bg-warning-lighten-5 {
-  background-color: #fffbeb;
-}
-
-.bg-info-lighten-5 {
-  background-color: #eff6ff;
-}
-</style>

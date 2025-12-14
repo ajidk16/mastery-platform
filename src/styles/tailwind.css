@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+@theme {
+  --animate-typing: typing 1.4s infinite ease-in-out;
+  --animate-pulse-recording: pulse-recording 1.5s infinite;
+  --animate-pulse-dot: pulse-dot 1s infinite;
+  --animate-wave: wave 0.5s infinite ease-in-out alternate;
+  --animate-pulse-red: pulse-red 1.5s infinite;
+  --animate-pulse-flame: pulse-flame 2s infinite ease-in-out;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes pulse-recording {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+    }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes wave {
+    0% { height: 10px; }
+    100% { height: 50px; }
+  }
+
+  @keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+
+  @keyframes pulse-flame {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 230, 200, 0.5)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.8)); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Global utility for deep selection in Vuetify if needed */
+.writing-input .v-field__input {
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  padding-top: 20px !important;
+}

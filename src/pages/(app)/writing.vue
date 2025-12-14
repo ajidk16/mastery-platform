@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="writing-session">
+  <div class="max-w-[1200px] mx-auto">
     <!-- Header -->
     <div class="d-flex align-center justify-space-between mb-6">
       <div class="d-flex align-center">
@@ -35,7 +35,7 @@ meta:
       <!-- Left Column: Prompt & Input -->
       <v-col cols="12" md="7">
         <!-- Prompt Card -->
-        <v-card class="mb-4" color="primary-lighten-4" elevation="0" rounded="xl">
+        <v-card class="mb-4 !bg-[rgba(var(--v-theme-primary),0.1)]" elevation="0" rounded="xl">
           <div class="pa-5">
             <div class="d-flex align-center mb-3">
               <v-icon class="mr-2" color="primary" icon="mdi-text-box-outline" />
@@ -129,7 +129,7 @@ meta:
             elevation="1"
             rounded="xl"
           >
-            <div class="pa-5 border-bottom">
+            <div class="pa-5 border-b border-black/10">
               <div class="d-flex align-center justify-space-between mb-2">
                 <span class="text-h6 font-weight-bold">Feedback Result</span>
                 <v-chip
@@ -145,7 +145,7 @@ meta:
               </p>
             </div>
 
-            <div class="feedback-content pa-0">
+            <div class="pa-0 max-h-[400px] overflow-y-auto">
               <v-list class="py-0">
                 <!-- Corrections -->
                 <v-list-subheader class="font-weight-bold text-uppercase mt-2">
@@ -167,7 +167,7 @@ meta:
                     />
                   </template>
 
-                  <div class="feedback-diff mb-1">
+                  <div class="mb-1">
                     <span class="text-decoration-line-through text-error mr-2">
                       {{ item.original }}
                     </span>
@@ -211,7 +211,7 @@ meta:
               </v-list>
             </div>
 
-            <div class="pa-4 border-top bg-grey-lighten-5">
+            <div class="pa-4 border-t border-black/10 bg-grey-lighten-5">
               <v-btn
                 block
                 color="primary"
@@ -308,37 +308,3 @@ meta:
     // In a real app, fetch new prompt here
   }
 </script>
-
-<style scoped>
-.writing-session {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.writing-input :deep(.v-field__input) {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  padding-top: 20px;
-}
-
-.bg-primary-lighten-4 {
-  background-color: rgb(var(--v-theme-primary), 0.1) !important;
-}
-
-.gap-2 {
-  gap: 8px;
-}
-
-.border-bottom {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.border-top {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.feedback-content {
-  max-height: 400px;
-  overflow-y: auto;
-}
-</style>
