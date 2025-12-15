@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="max-w-[800px] mx-auto">
+  <div class="max-w-200 mx-auto">
     <!-- Header -->
     <div class="d-flex align-center justify-space-between mb-4">
       <div class="d-flex align-center">
@@ -45,7 +45,7 @@ meta:
 
     <!-- Chat Container -->
     <v-card class="mb-4 bg-[#f9fafb] border border-gray-200" elevation="0" rounded="xl">
-      <div ref="chatArea" class="pa-4 h-[calc(100vh-320px)] min-h-[400px] overflow-y-auto">
+      <div ref="chatArea" class="pa-4 h-[calc(100vh-320px)] min-h-100 overflow-y-auto">
         <!-- Messages -->
         <div
           v-for="(message, index) in messages"
@@ -70,7 +70,7 @@ meta:
           </div>
 
           <!-- Inline Feedback (after user message) -->
-          <div v-if="message.role === 'user' && message.feedback" class="ml-[48px] mb-4">
+          <div v-if="message.role === 'user' && message.feedback" class="ml-12 mb-4">
             <v-card class="pa-4" color="grey-lighten-4" elevation="0" rounded="lg">
               <div class="text-caption font-weight-bold text-medium-emphasis mb-3">
                 <v-icon class="mr-1" icon="mdi-lightbulb" size="small" />
@@ -152,7 +152,7 @@ meta:
         <!-- Text Input -->
         <v-text-field
           v-model="userInput"
-          class="flex-grow-1"
+          class="grow"
           density="comfortable"
           hide-details
           placeholder="Ketik atau tekan mikrofon untuk bicara..."
@@ -187,13 +187,7 @@ meta:
 <script lang="ts" setup>
   import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
-
-  interface Feedback {
-    error?: string
-    correct?: string
-    native?: string
-    explanation?: string
-  }
+  import { type Feedback, sendMessageToAI } from '@/services/openai'
 
   interface Message {
     role: 'ai' | 'user'
@@ -211,6 +205,7 @@ meta:
   const isRecording = ref(false)
   const userInput = ref('')
   const chatArea = ref<HTMLElement | null>(null)
+  const recognition = ref<any>(null)
 
   // Timer
   let timerInterval: ReturnType<typeof setInterval> | null = null
@@ -229,21 +224,6 @@ meta:
     },
   ])
 
-  // Simulated AI responses with feedback
-  const sampleFeedback: Feedback[] = [
-    {
-      error: '"I am work as..."',
-      correct: '"I work as a software engineer."',
-      native: '"I\'m a software engineer at XYZ Company."',
-      explanation: 'Gunakan "work as" bukan "am work as". Untuk lebih natural, langsung sebut profesi Anda.',
-    },
-    {
-      correct: 'Great sentence structure!',
-      native: '"It\'s a pleasure to meet you."',
-      explanation: 'Kalimat Anda sudah benar! Versi native lebih formal untuk konteks bisnis.',
-    },
-  ]
-
   function startTimer () {
     timerInterval = setInterval(() => {
       sessionSeconds.value++
@@ -258,48 +238,126 @@ meta:
   }
 
   async function sendMessage () {
-    if (!userInput.value.trim()) return
+    if (!userInput.value.trim() || isTyping.value) return
 
     const userText = userInput.value.trim()
     userInput.value = ''
 
-    // Add user message
+    // Add user message immediately
     messages.value.push({
       role: 'user',
       text: userText,
-      feedback: sampleFeedback[messages.value.length % 2],
+      // Feedback will be populated after AI response if we want it "async",
+      // but typically we get feedback WITH the response.
+      // For UX, we might want to show the message first, then the feedback later.
+      // But the current UI structure attaches feedback to the user message.
+      // We will update this message later.
     })
 
     await scrollToBottom()
 
-    // Simulate AI typing
     isTyping.value = true
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    isTyping.value = false
 
-    // Add AI response
-    const aiResponses = [
-      'That\'s a good start! Now, tell me about your experience in your field. What projects have you worked on recently?',
-      'Excellent! You mentioned your role well. Can you also share what makes your company unique?',
-      'Great job! Let\'s practice asking questions now. How would you ask about the client\'s business needs?',
-    ]
+    try {
+      // Prepare history for context (excluding the just added message to avoid duplication in logic if handled differently,
+      // but my service takes history + new message separately or together.
+      // My service definition: sendMessageToAI(userMessage, history)
+      // So I should pass the history BEFORE the current message.
+      const history = messages.value.slice(0, -1).map(m => ({
+        role: m.role,
+        text: m.text,
+      }))
 
-    messages.value.push({
-      role: 'ai',
-      text: aiResponses[Math.floor(Math.random() * aiResponses.length)],
-    })
+      const response = await sendMessageToAI(userText, history)
 
-    await scrollToBottom()
+      // Update the user's message with the received feedback
+      if (response.feedback) {
+        messages.value.at(-1).feedback = response.feedback
+      }
+
+      // Add AI response
+      messages.value.push({
+        role: 'ai',
+        text: response.reply,
+      })
+    } catch (error) {
+      console.error('Failed to get AI response', error)
+      messages.value.push({
+        role: 'ai',
+        text: 'Sorry, I encountered an error. Please try again.',
+      })
+    } finally {
+      isTyping.value = false
+      await scrollToBottom()
+    }
   }
 
   function toggleRecording () {
-    isRecording.value = !isRecording.value
     if (isRecording.value) {
-      // Simulate voice recognition
-      setTimeout(() => {
-        userInput.value = 'Hello, my name is David and I am work as a software engineer.'
+      // Stop recording
+      if (recognition.value) {
+        recognition.value.stop()
+      }
+      isRecording.value = false
+    } else {
+      // Start recording
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+      if (!SpeechRecognition) {
+        alert('Browser Anda tidak mendukung fitur Voice Recognition. Gunakan Chrome, Edge, atau Safari.')
+        return
+      }
+
+      recognition.value = new SpeechRecognition()
+      recognition.value.lang = 'en-US'
+      recognition.value.continuous = true
+      recognition.value.interimResults = true
+
+      recognition.value.addEventListener('result', (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map((result: any) => result.transcript)
+          .join('')
+
+        userInput.value = transcript
+      })
+
+      recognition.value.addEventListener('end', () => {
         isRecording.value = false
-      }, 2000)
+        recognition.value = null
+      })
+
+      recognition.value.addEventListener('error', (event: any) => {
+        console.error('Speech recognition error', event.error)
+        isRecording.value = false
+        recognition.value = null
+
+        switch (event.error) {
+          case 'network': {
+            alert('Gangguan jaringan: Tidak dapat terhubung ke layanan speech recognition. Pastikan koneksi internet Anda stabil.')
+            break
+          }
+          case 'not-allowed': {
+            alert('Akses mikrofon ditolak. Mohon izinkan akses mikrofon untuk menggunakan fitur ini.')
+            break
+          }
+          case 'no-speech': {
+            // Ignore no-speech errors
+            break
+          }
+          default: {
+            console.warn(`Speech recognition error: ${event.error}`)
+            break
+          }
+        }
+      })
+
+      try {
+        recognition.value.start()
+        isRecording.value = true
+      } catch (error) {
+        console.error('Failed to start recording', error)
+        isRecording.value = false
+      }
     }
   }
 
