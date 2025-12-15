@@ -106,3 +106,36 @@ Keep the conversation engaging.
     }
   }
 }
+
+export async function transcribeAudio (
+  audioBlob: Blob,
+): Promise<string> {
+  if (!API_KEY) {
+    throw new Error('VITE_OPENAI_API_KEY is missing in environment variables.')
+  }
+
+  const formData = new FormData()
+  formData.append('file', audioBlob, 'audio.webm')
+  formData.append('model', 'whisper-1')
+
+  try {
+    const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+      body: formData,
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error?.message || 'OpenAI Transcription API Error')
+    }
+
+    const data = await response.json()
+    return data.text as string
+  } catch (error) {
+    console.error('Error transcribing audio with OpenAI:', error)
+    throw new Error('Failed to transcribe audio. Please try again later.')
+  }
+}

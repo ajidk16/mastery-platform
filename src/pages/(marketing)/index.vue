@@ -264,7 +264,7 @@
               rounded="2xl"
             >
               <div class="bg-linear-to-r from-primary to-purple-600 px-6 py-4">
-                <h4 class="text-white font-semibold">{{ demoFeatures[selectedFeature].title }}</h4>
+                <h4 class="text-white font-semibold">{{ demoFeatures[selectedFeature]?.title }}</h4>
               </div>
               <div class="pa-6">
                 <div v-if="selectedFeature === 0">
