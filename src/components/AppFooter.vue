@@ -8,7 +8,7 @@
           <div class="d-flex align-center mb-4">
             <v-img
               alt="Logo"
-              class="mr-3 flex-shrink-0"
+              class="mr-3 shrink-0"
               height="44"
               src="@/assets/logo.svg"
               width="44"
@@ -111,21 +111,21 @@
                   class="text-medium-emphasis/70 no-underline text-sm py-1 transition-all duration-200 hover:text-primary d-flex align-center"
                   href="mailto:hello@mastery.id"
                 >
-                  <v-icon class="mr-2 flex-shrink-0" icon="mdi-email-outline" size="16" />
+                  <v-icon class="mr-2 shrink-0" icon="mdi-email-outline" size="16" />
                   <span class="text-truncate">hello@mastery.id</span>
                 </a>
                 <a
                   class="text-medium-emphasis/70 no-underline text-sm py-1 transition-all duration-200 hover:text-primary d-flex align-center"
                   href="#"
                 >
-                  <v-icon class="mr-2 flex-shrink-0" icon="mdi-whatsapp" size="16" />
+                  <v-icon class="mr-2 shrink-0" icon="mdi-whatsapp" size="16" />
                   <span>WhatsApp</span>
                 </a>
                 <a
                   class="text-medium-emphasis/70 no-underline text-sm py-1 transition-all duration-200 hover:text-primary d-flex align-center"
                   href="#"
                 >
-                  <v-icon class="mr-2 flex-shrink-0" icon="mdi-map-marker-outline" size="16" />
+                  <v-icon class="mr-2 shrink-0" icon="mdi-map-marker-outline" size="16" />
                   <span>Jakarta, Indonesia</span>
                 </a>
               </div>
@@ -138,7 +138,7 @@
       <v-row class="mb-8">
         <v-col cols="12">
           <v-card
-            class="pa-5 md:pa-6 bg-gradient-to-r from-primary/5 to-purple-50"
+            class="pa-5 md:pa-6 bg-linear-to-r from-primary/5 to-purple-50"
             elevation="0"
             rounded="xl"
           >
@@ -156,7 +156,7 @@
                 <div class="d-flex flex-column sm:flex-row gap-3">
                   <v-text-field
                     bg-color="white"
-                    class="flex-grow-1"
+                    class="grow"
                     density="comfortable"
                     hide-details
                     placeholder="Masukkan email kamu"
@@ -164,7 +164,7 @@
                     variant="outlined"
                   />
                   <v-btn
-                    class="text-none flex-shrink-0"
+                    class="text-none shrink-0"
                     color="primary"
                     rounded="lg"
                     size="large"

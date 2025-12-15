@@ -6,7 +6,7 @@
       <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-4! mb-40 -right-40 w-80 h-80 bg-linear-to-br from-primary/20 to-purple-300/30 rounded-full blur-3xl animate-pulse" />
         <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-linear-to-tr from-blue-200/40 to-primary/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s" />
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-gradient-radial from-primary/5 to-transparent rounded-full" />
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-linear-radial from-primary/5 to-transparent rounded-full" />
       </div>
 
       <v-container class="relative z-10">
@@ -87,7 +87,7 @@
                 style="background: rgba(255, 255, 255, 0.85)"
               >
                 <!-- Chat Header -->
-                <div class="px-4 py-3 bg-gradient-to-r from-primary to-purple-600 text-white flex items-center gap-3">
+                <div class="px-4 py-3 bg-linear-to-r from-primary to-purple-600 text-white flex items-center gap-3">
                   <v-avatar color="white" size="40">
                     <v-icon color="primary" icon="mdi-robot-happy" size="24" />
                   </v-avatar>
@@ -101,20 +101,20 @@
                 </div>
 
                 <!-- Chat Messages -->
-                <div class="pa-4 space-y-4 min-h-[280px]">
+                <div class="pa-4 space-y-4 min-h-70">
                   <!-- AI Message -->
                   <div class="flex gap-3">
                     <v-avatar color="primary" size="36">
                       <v-icon color="white" icon="mdi-robot-happy" size="20" />
                     </v-avatar>
-                    <div class="bg-grey-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[280px]">
+                    <div class="bg-grey-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-70">
                       <p class="text-sm mb-0">Hi! Let's practice English today. Tell me about your favorite hobby. 🎯</p>
                     </div>
                   </div>
 
                   <!-- User Message -->
                   <div class="flex gap-3 justify-end">
-                    <div class="bg-primary rounded-2xl rounded-tr-sm px-4 py-3 max-w-[280px] text-white">
+                    <div class="bg-primary rounded-2xl rounded-tr-sm px-4 py-3 max-w-70 text-white">
                       <p class="text-sm mb-0">I like to playing football with my friend.</p>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                     <v-avatar color="primary" size="36">
                       <v-icon color="white" icon="mdi-robot-happy" size="20" />
                     </v-avatar>
-                    <div class="bg-grey-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[280px]">
+                    <div class="bg-grey-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-70">
                       <p class="text-sm mb-2">Great topic! Here's a small fix:</p>
                       <div class="bg-red-50 text-red-700 px-2 py-1 rounded text-xs mb-1 line-through">
                         "I like to playing"
@@ -222,7 +222,7 @@
     </section>
 
     <!-- Demo Preview Section -->
-    <section id="demo" class="py-16 md:py-24 bg-gradient-to-b from-grey-50 to-white">
+    <section id="demo" class="py-16 md:py-24 bg-linear-to-b from-grey-50 to-white">
       <v-container>
         <div class="text-center mb-12">
           <v-chip class="mb-4" color="purple" size="small" variant="tonal">
@@ -242,7 +242,7 @@
               <div
                 v-for="(feature, index) in demoFeatures"
                 :key="index"
-                class="flex gap-4! mb-4 items-start p-4! mb-4! mb-4 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-lg cursor-pointer"
+                class="flex gap-4! items-start p-4! mb-4! rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-lg cursor-pointer"
                 :class="{ 'bg-white shadow-lg': selectedFeature === index }"
                 @click="selectedFeature = index"
               >
@@ -263,7 +263,7 @@
               elevation="12"
               rounded="2xl"
             >
-              <div class="bg-gradient-to-r from-primary to-purple-600 px-6 py-4">
+              <div class="bg-linear-to-r from-primary to-purple-600 px-6 py-4">
                 <h4 class="text-white font-semibold">{{ demoFeatures[selectedFeature].title }}</h4>
               </div>
               <div class="pa-6">
@@ -432,7 +432,7 @@
     </section>
 
     <!-- Pricing Preview Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-b from-grey-50 to-white">
+    <section class="py-16 md:py-24 bg-linear-to-b from-grey-50 to-white">
       <v-container>
         <div class="text-center mb-12">
           <v-chip class="mb-4" color="orange" size="small" variant="tonal">
@@ -572,7 +572,7 @@
     </section>
 
     <!-- Final CTA Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-primary to-purple-600 text-white relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-linear-to-r from-primary to-purple-600 text-white relative overflow-hidden">
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-10 left-10 w-40 h-40 border-2 border-white rounded-full" />

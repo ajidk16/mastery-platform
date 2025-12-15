@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50 relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-linear-to-br from-orange-50 via-white to-amber-50 relative overflow-hidden">
       <!-- Background Decorations -->
       <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-orange-200/40 to-amber-200/40 rounded-full blur-3xl" />
-        <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-tr from-primary/20 to-purple-200/40 rounded-full blur-3xl" />
+        <div class="absolute -top-20 -right-20 w-60 h-60 bg-linear-to-br from-orange-200/40 to-amber-200/40 rounded-full blur-3xl" />
+        <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-linear-to-tr from-primary/20 to-purple-200/40 rounded-full blur-3xl" />
       </div>
 
       <v-container class="relative z-10">
@@ -15,7 +15,7 @@
             HARGA SPESIAL LAUNCHING
           </v-chip>
           <h1 class="text-4xl md:text-5xl font-extrabold mb-6">
-            Investasi <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Terbaik</span> untuk Speaking-mu
+            Investasi <span class="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-amber-500">Terbaik</span> untuk Speaking-mu
           </h1>
           <p class="text-lg md:text-xl text-medium-emphasis">
             Lebih murah dari secangkir kopi per hari. Hasil? Percaya diri speaking English seumur hidup.
@@ -25,7 +25,7 @@
     </section>
 
     <!-- Pricing Toggle (Monthly/Yearly) -->
-    <section class="py-8 bg-white sticky top-[70px] z-20 border-b">
+    <section class="py-8 bg-white sticky top-17.5 z-20 border-b">
       <v-container>
         <div class="flex items-center justify-center gap-4">
           <span :class="{ 'font-bold text-primary': !isYearly, 'text-medium-emphasis': isYearly }">Bulanan</span>
@@ -209,7 +209,7 @@
           <!-- Lifetime Plan -->
           <v-col cols="12" md="4">
             <v-card
-              class="h-full pa-8 bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              class="h-full pa-8 bg-linear-to-br from-purple-50 to-indigo-50 border border-purple-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               elevation="4"
               rounded="2xl"
             >
@@ -359,7 +359,7 @@
     </section>
 
     <!-- Killer Feature Highlight -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-primary to-purple-600 text-white relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-linear-to-br from-primary to-purple-600 text-white relative overflow-hidden">
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-10 right-10 w-40 h-40 border-2 border-white rounded-full" />
         <div class="absolute bottom-10 left-10 w-60 h-60 border-2 border-white rounded-full" />
@@ -505,7 +505,7 @@
     </section>
 
     <!-- Final CTA -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-orange-500 to-amber-500 text-white">
+    <section class="py-16 md:py-24 bg-linear-to-r from-orange-500 to-amber-500 text-white">
       <v-container>
         <div class="text-center max-w-3xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-extrabold mb-6">

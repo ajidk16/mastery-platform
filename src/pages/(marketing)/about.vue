@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-teal-50 via-white to-cyan-50 relative overflow-hidden">
+    <section class="py-16 md:py-24 bg-linear-to-br from-teal-50 via-white to-cyan-50 relative overflow-hidden">
       <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-teal-200/40 to-cyan-200/40 rounded-full blur-3xl" />
-        <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-gradient-to-tr from-primary/20 to-teal-200/40 rounded-full blur-3xl" />
+        <div class="absolute -top-20 -right-20 w-60 h-60 bg-linear-to-br from-teal-200/40 to-cyan-200/40 rounded-full blur-3xl" />
+        <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-linear-to-tr from-primary/20 to-teal-200/40 rounded-full blur-3xl" />
       </div>
 
       <v-container class="relative z-10">
@@ -15,7 +15,7 @@
           </v-chip>
           <h1 class="text-4xl md:text-5xl font-extrabold mb-6">
             Kami Percaya Semua Orang Bisa
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-500">Jago Speaking</span>
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-teal-500 to-cyan-500">Jago Speaking</span>
           </h1>
           <p class="text-lg md:text-xl text-medium-emphasis">
             Misi kami sederhana: bantu kamu percaya diri berbicara bahasa Inggris, tanpa rasa takut.
@@ -60,19 +60,19 @@
                     <h3 class="text-xl font-bold mb-2">Misi</h3>
                     <ul class="text-medium-emphasis space-y-2 leading-relaxed">
                       <li class="flex items-start gap-2">
-                        <v-icon class="mt-1 flex-shrink-0" color="success" icon="mdi-check" size="18" />
+                        <v-icon class="mt-1 shrink-0" color="success" icon="mdi-check" size="18" />
                         <span>Menyediakan latihan speaking berkualitas dengan harga terjangkau</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <v-icon class="mt-1 flex-shrink-0" color="success" icon="mdi-check" size="18" />
+                        <v-icon class="mt-1 shrink-0" color="success" icon="mdi-check" size="18" />
                         <span>Memberikan feedback personal dan real-time menggunakan AI</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <v-icon class="mt-1 flex-shrink-0" color="success" icon="mdi-check" size="18" />
+                        <v-icon class="mt-1 shrink-0" color="success" icon="mdi-check" size="18" />
                         <span>Membangun kepercayaan diri melalui latihan konsisten yang menyenangkan</span>
                       </li>
                       <li class="flex items-start gap-2">
-                        <v-icon class="mt-1 flex-shrink-0" color="success" icon="mdi-check" size="18" />
+                        <v-icon class="mt-1 shrink-0" color="success" icon="mdi-check" size="18" />
                         <span>Fokus pada OUTPUT (speaking), bukan hanya teori dan grammar</span>
                       </li>
                     </ul>
@@ -83,7 +83,7 @@
           </v-col>
 
           <v-col cols="12" md="6">
-            <v-card class="pa-8 bg-gradient-to-br from-primary/5 to-teal-50" elevation="0" rounded="2xl">
+            <v-card class="pa-8 bg-linear-to-br from-primary/5 to-teal-50" elevation="0" rounded="2xl">
               <div class="text-center mb-6">
                 <v-icon color="primary" icon="mdi-format-quote-open" opacity="0.3" size="48" />
               </div>
@@ -142,105 +142,105 @@
 
         <!-- Our Solution -->
         <v-card class="overflow-hidden" elevation="0" rounded="2xl">
-          <div class="relative bg-gradient-to-br from-primary via-teal-600 to-cyan-600 text-white">
+          <div class="relative bg-linear-to-br from-primary via-teal-600 to-cyan-600 text-white">
             <!-- Decorative elements -->
             <div class="absolute inset-0 overflow-hidden opacity-10">
               <div class="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl" />
               <div class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl" />
             </div>
-            
-            <v-row class="relative z-10 pa-8 md:pa-12" align="center">
+
+            <v-row align="center" class="relative z-10 pa-8 md:pa-12">
               <v-col cols="12" md="7">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl">
-              <v-icon color="white" icon="mdi-lightbulb" size="24" />
-            </div>
-            <span class="text-sm font-semibold uppercase tracking-wider opacity-90">Solusi Kami</span>
-          </div>
-          
-          <h3 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight">
-            AI Speaking Partner<br />
-            <span class="text-teal-100">Tersedia 24/7 untuk Kamu</span>
-          </h3>
-          
-          <p class="text-base md:text-lg opacity-90 mb-8 leading-relaxed">
-            Private tutor AI yang sabar, tidak menghakimi, dan memberikan feedback personal secara real-time. Fokus pada SPEAKING, bukan teori.
-          </p>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
-              <div class="flex-shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
-                <v-icon color="white" icon="mdi-check-bold" size="20" />
-              </div>
-              <span class="text-sm font-semibold">Feedback Instan</span>
-            </div>
-            
-            <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
-              <div class="flex-shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
-                <v-icon color="white" icon="mdi-check-bold" size="20" />
-              </div>
-              <span class="text-sm font-semibold">Tanpa Takut Salah</span>
-            </div>
-            
-            <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
-              <div class="flex-shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
-                <v-icon color="white" icon="mdi-check-bold" size="20" />
-              </div>
-              <span class="text-sm font-semibold">Harga Terjangkau</span>
-            </div>
-          </div>
-          
-          <div class="mt-8">
-            <v-btn
-              class="text-none font-bold px-8 hover:-translate-y-1 transition-all duration-300"
-              color="white"
-              elevation="8"
-              rounded="xl"
-              size="large"
-              to="/signup"
-            >
-              <span class="text-primary">
-                <v-icon class="mr-2" icon="mdi-rocket-launch" />
-                Coba Sekarang Gratis
-              </span>
-            </v-btn>
-          </div>
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl">
+                    <v-icon color="white" icon="mdi-lightbulb" size="24" />
+                  </div>
+                  <span class="text-sm font-semibold uppercase tracking-wider opacity-90">Solusi Kami</span>
+                </div>
+
+                <h3 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight">
+                  AI Speaking Partner<br>
+                  <span class="text-teal-100">Tersedia 24/7 untuk Kamu</span>
+                </h3>
+
+                <p class="text-base md:text-lg opacity-90 mb-8 leading-relaxed">
+                  Private tutor AI yang sabar, tidak menghakimi, dan memberikan feedback personal secara real-time. Fokus pada SPEAKING, bukan teori.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                    <div class="shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
+                      <v-icon color="white" icon="mdi-check-bold" size="20" />
+                    </div>
+                    <span class="text-sm font-semibold">Feedback Instan</span>
+                  </div>
+
+                  <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                    <div class="shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
+                      <v-icon color="white" icon="mdi-check-bold" size="20" />
+                    </div>
+                    <span class="text-sm font-semibold">Tanpa Takut Salah</span>
+                  </div>
+
+                  <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
+                    <div class="shrink-0 w-10 h-10 bg-success rounded-lg flex items-center justify-center">
+                      <v-icon color="white" icon="mdi-check-bold" size="20" />
+                    </div>
+                    <span class="text-sm font-semibold">Harga Terjangkau</span>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <v-btn
+                    class="text-none font-bold px-8 hover:-translate-y-1 transition-all duration-300"
+                    color="white"
+                    elevation="8"
+                    rounded="xl"
+                    size="large"
+                    to="/signup"
+                  >
+                    <span class="text-primary">
+                      <v-icon class="mr-2" icon="mdi-rocket-launch" />
+                      Coba Sekarang Gratis
+                    </span>
+                  </v-btn>
+                </div>
               </v-col>
-              
+
               <v-col class="text-center" cols="12" md="5">
-          <div class="relative inline-block">
-            <!-- Animated rings -->
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-48 h-48 border-4 border-white/20 rounded-full animate-ping" style="animation-duration: 3s;" />
-            </div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-40 h-40 border-4 border-white/30 rounded-full animate-ping" style="animation-duration: 2s;" />
-            </div>
-            
-            <!-- Main avatar -->
-            <v-avatar
-              class="relative shadow-2xl border-4 border-white/30"
-              color="white"
-              size="160"
-            >
-              <v-icon color="primary" icon="mdi-robot-happy-outline" size="80" />
-            </v-avatar>
-            
-            <!-- Floating badges -->
-            <div class="absolute -top-4 -right-4 bg-success px-4 py-2 rounded-full shadow-xl animate-bounce" style="animation-duration: 2s;">
-              <span class="text-white text-xs font-bold flex items-center gap-1">
-                <v-icon icon="mdi-star" size="14" />
-                4.9/5
-              </span>
-            </div>
-            
-            <div class="absolute -bottom-4 -left-4 bg-orange px-4 py-2 rounded-full shadow-xl" style="animation: bounce 2s infinite; animation-delay: 1s;">
-              <span class="text-white text-xs font-bold flex items-center gap-1">
-                <v-icon icon="mdi-fire" size="14" />
-                100K+ Sesi
-              </span>
-            </div>
-          </div>
+                <div class="relative inline-block">
+                  <!-- Animated rings -->
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-48 h-48 border-4 border-white/20 rounded-full animate-ping" style="animation-duration: 3s;" />
+                  </div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-40 h-40 border-4 border-white/30 rounded-full animate-ping" style="animation-duration: 2s;" />
+                  </div>
+
+                  <!-- Main avatar -->
+                  <v-avatar
+                    class="relative shadow-2xl border-4 border-white/30"
+                    color="white"
+                    size="160"
+                  >
+                    <v-icon color="primary" icon="mdi-robot-happy-outline" size="80" />
+                  </v-avatar>
+
+                  <!-- Floating badges -->
+                  <div class="absolute -top-4 -right-4 bg-success px-4 py-2 rounded-full shadow-xl animate-bounce" style="animation-duration: 2s;">
+                    <span class="text-white text-xs font-bold flex items-center gap-1">
+                      <v-icon icon="mdi-star" size="14" />
+                      4.9/5
+                    </span>
+                  </div>
+
+                  <div class="absolute -bottom-4 -left-4 bg-orange px-4 py-2 rounded-full shadow-xl" style="animation: bounce 2s infinite; animation-delay: 1s;">
+                    <span class="text-white text-xs font-bold flex items-center gap-1">
+                      <v-icon icon="mdi-fire" size="14" />
+                      100K+ Sesi
+                    </span>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </div>
@@ -323,7 +323,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-primary to-teal-600 text-white">
+    <section class="py-16 md:py-24 bg-linear-to-r from-primary to-teal-600 text-white">
       <v-container>
         <v-row>
           <v-col
@@ -460,7 +460,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-teal-500 to-cyan-500 text-white">
+    <section class="py-16 md:py-24 bg-linear-to-r from-teal-500 to-cyan-500 text-white">
       <v-container>
         <div class="text-center max-w-3xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-extrabold mb-6">

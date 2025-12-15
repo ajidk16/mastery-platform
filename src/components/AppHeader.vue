@@ -13,7 +13,7 @@
       >
         <v-img
           alt="Logo"
-          class="me-2 transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+          class="me-2 transition-transform duration-300 group-hover:scale-105 shrink-0"
           :height="isMobile ? 32 : 36"
           src="@/assets/logo.svg"
           :width="isMobile ? 32 : 36"
@@ -33,7 +33,7 @@
         <router-link
           v-for="link in navLinks"
           :key="link.to"
-          class="mx-3 relative text-medium-emphasis/70 no-underline text-[15px] font-medium py-2 px-1 transition-all duration-200 hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-200 after:rounded-[2px] hover:after:w-full"
+          class="mx-3 relative text-medium-emphasis/70 no-underline text-[15px] font-medium py-2 px-1 transition-all duration-200 hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-200 after:rounded-xs hover:after:w-full"
           :class="{ 'text-primary after:w-full': isActive(link.to) }"
           :to="link.to"
         >
@@ -41,7 +41,7 @@
         </router-link>
 
         <v-btn
-          class="ml-4 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
+          class="ml-4 text-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
           color="primary"
           elevation="2"
           rounded="lg"
@@ -87,13 +87,13 @@
   <!-- Mobile/Tablet Navigation Drawer -->
   <v-navigation-drawer
     v-model="drawer"
-    class="rounded-l-[16px]!"
+    class="rounded-l-2xl!"
     location="right"
     temporary
     :width="isMobile ? 280 : 320"
   >
     <!-- Drawer Header -->
-    <div class="pa-4 d-flex align-center justify-space-between bg-gradient-to-r from-primary/5 to-purple-50">
+    <div class="pa-4 d-flex align-center justify-space-between bg-linear-to-r from-primary/5 to-purple-50">
       <div class="d-flex align-center">
         <v-img alt="Logo" height="32" src="@/assets/logo.svg" width="32" />
         <span class="text-subtitle-1 font-weight-bold text-primary ml-3">Mastery Platform</span>
@@ -128,7 +128,7 @@
 
     <!-- User Stats Preview (for engagement) -->
     <div class="pa-4">
-      <div class="bg-gradient-to-r from-primary/10 to-purple-100/50 rounded-xl pa-4 mb-4">
+      <div class="bg-linear-to-r from-primary/10 to-purple-100/50 rounded-xl pa-4 mb-4">
         <div class="text-caption text-medium-emphasis mb-1">🔥 Sedang trending</div>
         <div class="text-body-2 font-medium">5,000+ orang belajar speaking hari ini</div>
       </div>
