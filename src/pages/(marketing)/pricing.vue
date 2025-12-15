@@ -1,3 +1,8 @@
+<route lang="yaml">
+meta:
+  layout: marketing
+</route>
+
 <template>
   <div>
     <!-- Hero Section -->
