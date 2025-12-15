@@ -24,7 +24,7 @@ meta:
                 minggu.
               </p>
               <v-btn
-                class="text-none px-8 animate-fade-in-up delay-200 opacity-0 transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
+                class="text-none px-8 animate-fade-in-up delay-200 opacity-0 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
                 color="primary"
                 elevation="8"
                 rounded="lg"
@@ -84,7 +84,7 @@ meta:
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 v-bind="props"
-                class="py-8 px-6 h-100 transition-all duration-300 !rounded-[16px]"
+                class="py-8 px-6 h-100 transition-all duration-300 rounded-2xl!"
                 :class="{ '-translate-y-2 shadow-[0_12px_40px_rgba(0,0,0,0.12)]!': isHovering }"
                 flat
               >
@@ -224,7 +224,7 @@ meta:
           Mulai gratis, upgrade saat Anda siap berkomitmen lebih.
         </p>
         <v-btn
-          class="px-8 text-none transition-all duration-300 hover:-translate-y-[2px]"
+          class="px-8 text-none transition-all duration-300 hover:-translate-y-0.5"
           color="primary"
           rounded="lg"
           size="x-large"
@@ -293,7 +293,7 @@ meta:
           speaking mereka
         </p>
         <v-btn
-          class="px-10 text-none transition-all duration-300 hover:-translate-y-[2px]"
+          class="px-10 text-none transition-all duration-300 hover:-translate-y-0.5"
           color="primary"
           elevation="8"
           rounded="lg"

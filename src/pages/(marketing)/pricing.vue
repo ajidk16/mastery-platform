@@ -93,11 +93,11 @@ meta:
             >
               TERMASUK:
             </div>
-            <v-list class="flex-grow-1" density="compact">
+            <v-list class="grow" density="compact">
               <v-list-item
                 v-for="feature in freeFeatures"
                 :key="feature"
-                class="px-0 min-h-[36px]"
+                class="px-0 min-h-9"
               >
                 <template #prepend>
                   <v-icon
@@ -155,7 +155,7 @@ meta:
 
             <v-btn
               block
-              class="mb-6 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
+              class="mb-6 text-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
               color="primary"
               elevation="4"
               rounded="lg"
@@ -174,13 +174,13 @@ meta:
             </div>
             <v-list
               bg-color="transparent"
-              class="flex-grow-1"
+              class="grow"
               density="compact"
             >
               <v-list-item
                 v-for="feature in proFeatures"
                 :key="feature.text"
-                class="px-0 min-h-[36px]"
+                class="px-0 min-h-9"
               >
                 <template #prepend>
                   <v-icon

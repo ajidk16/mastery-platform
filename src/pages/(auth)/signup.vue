@@ -125,7 +125,7 @@ meta:
             <!-- Submit Button -->
             <v-btn
               block
-              class="mt-4 text-none transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
+              class="mt-4 text-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)]!"
               color="primary"
               :loading="loading"
               rounded="lg"

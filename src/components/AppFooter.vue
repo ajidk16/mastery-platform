@@ -19,7 +19,7 @@
             Platform latihan speaking AI #1 di Indonesia. Tingkatkan kemampuan
             berbicara Anda dengan teknologi AI terdepan.
           </p>
-          <div class="flex gap-[8px]">
+          <div class="flex gap-2">
             <v-btn
               v-for="social in socials"
               :key="social.name"

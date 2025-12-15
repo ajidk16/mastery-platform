@@ -4,7 +4,7 @@ meta:
 </route>
 
 <template>
-  <div class="max-w-[1000px] mx-auto">
+  <div class="max-w-250 mx-auto">
     <!-- Header -->
     <div class="d-flex align-center justify-space-between mb-8">
       <div class="d-flex align-center">
@@ -29,7 +29,7 @@ meta:
     </div>
 
     <!-- Main Card -->
-    <v-card class="bg-white min-h-[500px] mx-auto" elevation="4" max-width="800" rounded="xl">
+    <v-card class="bg-white min-h-125 mx-auto" elevation="4" max-width="800" rounded="xl">
       <div class="pa-8 text-center">
         <!-- Progress -->
         <div class="mb-8">
@@ -54,8 +54,8 @@ meta:
         >
           <div :key="currentStep" class="mb-10">
             <!-- Step 1-2: Learning Mode -->
-            <div v-if="currentStep !== 'result'">
-              <h2 class="text-h4 font-weight-medium mb-4" :class="{ 'blur-[8px] select-none': hideText }">
+            <div v-if="currentStep !== 'result' && currentSentence">
+              <h2 class="text-h4 font-weight-medium mb-4" :class="{ 'blur-sm select-none': hideText }">
                 "{{ currentSentence.text }}"
               </h2>
               <div class="text-body-1 text-medium-emphasis">
@@ -64,8 +64,8 @@ meta:
             </div>
 
             <!-- Step 3: Result Mode (Heatmap) -->
-            <div v-else>
-              <div class="d-flex flex-wrap justify-center gap-[8px] mb-4">
+            <div v-else-if="currentSentence">
+              <div class="d-flex flex-wrap justify-center gap-2 mb-4">
                 <span
                   v-for="(word, index) in currentSentence.words"
                   :key="index"
@@ -75,7 +75,7 @@ meta:
                   {{ word.text }}
                 </span>
               </div>
-              <div class="d-flex justify-center gap-[16px] text-caption text-medium-emphasis">
+              <div class="d-flex justify-center gap-4 text-caption text-medium-emphasis">
                 <span class="d-flex align-center"><v-icon class="mr-1" color="success" icon="mdi-circle" size="x-small" /> Good</span>
                 <span class="d-flex align-center"><v-icon class="mr-1" color="warning" icon="mdi-circle" size="x-small" /> Accent</span>
                 <span class="d-flex align-center"><v-icon class="mr-1" color="error" icon="mdi-circle" size="x-small" /> Missed</span>
@@ -89,12 +89,12 @@ meta:
           <!-- Native Waveform -->
           <div class="d-flex align-center justify-center mb-2">
             <span class="text-caption font-weight-bold text-primary mr-3">AI Coach</span>
-            <div class="h-[60px] gap-[4px] items-center d-flex align-center">
+            <div class="h-15 gap-1 items-center d-flex align-center">
               <div
                 v-for="n in 40"
                 :key="n"
-                class="w-[6px] bg-[#e0e7ff] rounded-[4px] transition-all duration-200"
-                :class="{ '!bg-[#6366f1] !h-[48px]': isPlayingNative && n % 3 === 0 }"
+                class="w-1.5 bg-[#e0e7ff] rounded-sm transition-all duration-200"
+                :class="{ 'bg-[#6366f1]! h-12!': isPlayingNative && n % 3 === 0 }"
                 :style="{ height: Math.random() * 24 + 8 + 'px' }"
               />
             </div>
@@ -104,12 +104,12 @@ meta:
           <transition name="slide-y">
             <div v-if="hasRecorded || isRecording" class="d-flex align-center justify-center">
               <span class="text-caption font-weight-bold text-success mr-3">You</span>
-              <div class="h-[60px] gap-[4px] items-center d-flex align-center">
+              <div class="h-15 gap-1 items-center d-flex align-center">
                 <div
                   v-for="n in 40"
                   :key="n"
-                  class="w-[6px] bg-[#e0e7ff] rounded-[4px] transition-all duration-200 !bg-[#dcfce7]"
-                  :class="{ '!bg-[#22c55e] animate-wave': isRecording }"
+                  class="w-1.5 bg-[#e0e7ff] rounded-sm transition-all duration-200"
+                  :class="{ 'bg-[#22c55e]! animate-wave': isRecording }"
                   :style="{ height: isRecording ? Math.random() * 24 + 8 + 'px' : (hasRecorded ? Math.random() * 20 + 8 + 'px' : '4px') }"
                 />
               </div>
@@ -155,7 +155,7 @@ meta:
             </v-btn>
 
             <!-- Step 3: Result Actions -->
-            <div v-else class="d-flex align-center justify-center gap-[16px]">
+            <div v-else class="d-flex align-center justify-center gap-4">
               <v-btn
                 color="grey-lighten-2"
                 icon="mdi-refresh"

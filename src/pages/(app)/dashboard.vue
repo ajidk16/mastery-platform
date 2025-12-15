@@ -42,7 +42,7 @@ meta:
       rounded="xl"
     >
       <div class="d-flex flex-column flex-md-row align-center pa-6 pa-md-8">
-        <div class="flex-grow-1 text-center text-md-start mb-4 mb-md-0">
+        <div class="grow text-center text-md-start mb-4 mb-md-0">
           <v-chip class="mb-3" color="white" size="small" variant="flat">
             <v-icon icon="mdi-calendar-today" size="small" start />
             Tugas Harian
@@ -56,7 +56,7 @@ meta:
         </div>
         <div class="text-center">
           <v-btn
-            class="px-8 transition-all duration-300 !text-[#4f46e5] font-semibold hover:-translate-y-[2px] hover:!shadow-[0_8px_25px_rgba(0,0,0,0.2)]"
+            class="px-8 transition-all duration-300 text-[#4f46e5]! font-semibold hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)]!"
             color="white"
             elevation="4"
             rounded="lg"
@@ -73,8 +73,8 @@ meta:
         </div>
       </div>
       <!-- Decorative elements -->
-      <div class="absolute rounded-full bg-white/10 w-[200px] h-[200px] -top-[50px] -right-[50px]" />
-      <div class="absolute rounded-full bg-white/10 w-[150px] h-[150px] -bottom-[30px] left-[10%]" />
+      <div class="absolute rounded-full bg-white/10 w-50 h-50 -top-12.5 -right-12.5" />
+      <div class="absolute rounded-full bg-white/10 w-36 h-36 -bottom-7.5 left-2.5" />
     </v-card>
 
     <!-- Progress & Quick Actions -->
@@ -170,7 +170,7 @@ meta:
               <v-avatar color="primary" rounded="lg" size="48" variant="tonal">
                 <v-icon icon="mdi-message-text" />
               </v-avatar>
-              <div class="ml-4 flex-grow-1">
+              <div class="ml-4 grow">
                 <div class="text-subtitle-1 font-weight-bold">{{ lastSession.topic }}</div>
                 <div class="text-caption text-medium-emphasis">
                   {{ lastSession.date }} • {{ lastSession.duration }}

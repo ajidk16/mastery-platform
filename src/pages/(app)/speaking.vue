@@ -271,8 +271,9 @@ meta:
       const response = await sendMessageToAI(userText, history)
 
       // Update the user's message with the received feedback
-      if (response.feedback) {
-        messages.value.at(-1).feedback = response.feedback
+      if (response.feedback && messages.value.length > 0) {
+        const lastIndex = messages.value.length - 1
+        messages.value[lastIndex]!.feedback = response.feedback
       }
 
       // Add AI response

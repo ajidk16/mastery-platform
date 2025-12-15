@@ -249,7 +249,7 @@ meta:
             <v-spacer v-else />
 
             <v-btn
-              class="text-none transition-all duration-300 hover:enabled:-translate-y-[2px] hover:enabled:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
+              class="text-none transition-all duration-300 hover:enabled:-translate-y-0.5 hover:enabled:shadow-[0_6px_20px_rgba(99,102,241,0.3)]!"
               color="primary"
               :disabled="!canProceed"
               rounded="lg"
