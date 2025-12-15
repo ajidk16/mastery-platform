@@ -187,7 +187,7 @@ meta:
 <script lang="ts" setup>
   import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
-  import { type Feedback, sendMessageToAI } from '@/services/openai'
+  import { type Feedback, sendMessageToAI, transcribeAudio } from '@/services/openai'
 
   interface Message {
     role: 'ai' | 'user'
@@ -205,7 +205,6 @@ meta:
   const isRecording = ref(false)
   const userInput = ref('')
   const chatArea = ref<HTMLElement | null>(null)
-  const recognition = ref<any>(null)
 
   // Timer
   let timerInterval: ReturnType<typeof setInterval> | null = null
@@ -293,71 +292,60 @@ meta:
     }
   }
 
-  function toggleRecording () {
+  // Audio Recording (Whisper)
+  const mediaRecorder = ref<MediaRecorder | null>(null)
+  const audioChunks = ref<Blob[]>([])
+  const isTranscribing = ref(false)
+
+  async function toggleRecording () {
     if (isRecording.value) {
       // Stop recording
-      if (recognition.value) {
-        recognition.value.stop()
+      if (mediaRecorder.value && mediaRecorder.value.state !== 'inactive') {
+        mediaRecorder.value.stop()
       }
       isRecording.value = false
     } else {
       // Start recording
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
-      if (!SpeechRecognition) {
-        alert('Browser Anda tidak mendukung fitur Voice Recognition. Gunakan Chrome, Edge, atau Safari.')
-        return
-      }
-
-      recognition.value = new SpeechRecognition()
-      recognition.value.lang = 'en-US'
-      recognition.value.continuous = true
-      recognition.value.interimResults = true
-
-      recognition.value.addEventListener('result', (event: any) => {
-        const transcript = Array.from(event.results)
-          .map((result: any) => result[0])
-          .map((result: any) => result.transcript)
-          .join('')
-
-        userInput.value = transcript
-      })
-
-      recognition.value.addEventListener('end', () => {
-        isRecording.value = false
-        recognition.value = null
-      })
-
-      recognition.value.addEventListener('error', (event: any) => {
-        console.error('Speech recognition error', event.error)
-        isRecording.value = false
-        recognition.value = null
-
-        switch (event.error) {
-          case 'network': {
-            alert('Gangguan jaringan: Tidak dapat terhubung ke layanan speech recognition. Pastikan koneksi internet Anda stabil.')
-            break
-          }
-          case 'not-allowed': {
-            alert('Akses mikrofon ditolak. Mohon izinkan akses mikrofon untuk menggunakan fitur ini.')
-            break
-          }
-          case 'no-speech': {
-            // Ignore no-speech errors
-            break
-          }
-          default: {
-            console.warn(`Speech recognition error: ${event.error}`)
-            break
-          }
-        }
-      })
-
       try {
-        recognition.value.start()
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+        mediaRecorder.value = new MediaRecorder(stream)
+        audioChunks.value = []
+
+        mediaRecorder.value.addEventListener('dataavailable', event => {
+          if (event.data.size > 0) {
+            audioChunks.value.push(event.data)
+          }
+        })
+
+        mediaRecorder.value.addEventListener('stop', async () => {
+          const audioBlob = new Blob(audioChunks.value, { type: 'audio/webm' })
+          const audioFile = new File([audioBlob], 'recording.webm', { type: 'audio/webm' })
+
+          isTranscribing.value = true
+          try {
+            const text = await transcribeAudio(audioFile)
+            console.log('Transcription result:', text)
+            userInput.value = text
+            // Optional: Automatically send message?
+            // sendMessage()
+          } catch (error) {
+            console.error('Transcription failed:', error)
+            alert('Gagal mentranskripsi suara. Silakan coba lagi.')
+          } finally {
+            isTranscribing.value = false
+          }
+
+          // Stop all tracks to release microphone
+          for (const track of stream.getTracks()) {
+            track.stop()
+          }
+        })
+
+        mediaRecorder.value.start()
         isRecording.value = true
       } catch (error) {
-        console.error('Failed to start recording', error)
-        isRecording.value = false
+        console.error('Error accessing microphone:', error)
+        alert('Tidak dapat mengakses mikrofon. Pastikan Anda memberikan izin.')
       }
     }
   }
